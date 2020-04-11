@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { BoardComponent } from './tier-list/board/board.component';
-import { ListItemComponent } from './tier-list/list-item/list-item.component'
+import { ListItemComponent } from './tier-list/list-item/list-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ListItemComponent } from './tier-list/list-item/list-item.component'
     // default angualr
     BrowserModule,
     // firebase
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
