@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 
 // firebase stuff
 import { environment } from "src/environments/environment";
-import { AngularFireModule } from "@angular/fire"
+import { AngularFireModule } from "@angular/fire";
+import { BoardComponent } from './tier-list/board/board.component';
+import { ListItemComponent } from './tier-list/list-item/list-item.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardComponent,
+    ListItemComponent
   ],
   imports: [
     // default angualr
