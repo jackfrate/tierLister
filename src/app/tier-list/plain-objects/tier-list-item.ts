@@ -1,19 +1,23 @@
 // // unique identifier for no name
 // const noNameSymbol = Symbol('no-name');
 
-// abstract class TierListItemManager {
-//     public static getTLItemUIState(tierListItem: TierListItem) {
-//         const ret = {};
-//         ret.name = tierListItem.name !== noNameSymbol
-//     }
-//     abstract createItem(name: string | Symbol, url?: string): TierListItem;
-// }
+export class TierListItemFactory {
 
-// export class OnlyNameFactory {
-//     createItem(name: string | Symbol, url?: string): TierListItem {
+    public static makeItemWithName(name: string): TierListItem {
+        return { name: name };
+    }
 
-//     }
-// }
+    public static makeItemWithUrl(url: string): TierListItem {
+        return { url: url };
+    }
+
+    public static makeItem(name: string, url: string): TierListItem {
+        return {
+            name: name,
+            url: url
+        }
+    }
+}
 
 
 // =========================================================================== //

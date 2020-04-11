@@ -8,23 +8,45 @@ import { Tier } from '../plain-objects/tier';
 export class RoomService {
 
   // items that every local and global tierlist will reference
-  public roomTListItems: TierListItem[];
+  private _roomTListItems: TierListItem[];
 
   // map of what tier
-  private tiers: Tier[];
+  private _tiers: Tier[];
 
   constructor() {
-    this.roomTListItems = [];
-    this.tiers = [];
+    this._roomTListItems = [];
+    this._tiers = [];
   }
 
-  getTiers(): Tier[] {
-    return this.tiers;
+  get roomTListItems(): TierListItem[] {
+    return this._roomTListItems;
+  }
+
+  addTierListItem(item: TierListItem) {
+    this._roomTListItems.push(item);
+  }
+
+  removeTierListItem(item: TierListItem) {
+    const filterFunc = (tli: TierListItem) => {
+      // we pass the filter if the tier name is not identical
+      if (tli.name) {
+        return tli.name.toLowerCase() !== item.name.toLowerCase();
+      }
+      if (tli.url) {
+        return tli.url.toLowerCase() !== item.url.toLowerCase();
+      }
+    }
+    const filteredItems = this._roomTListItems.filter(filterFunc);
+    this._roomTListItems = filteredItems;
+  }
+
+  get tiers(): Tier[] {
+    return this._tiers;
   }
 
   addTier(tier: Tier) {
-    this.tiers.push(tier);
-    this.tiers.sort();
+    this._tiers.push(tier);
+    this._tiers.sort();
   }
 
   removeTier(tierName: string) {
@@ -32,8 +54,8 @@ export class RoomService {
       // we pass the filter if the tier name is not identical
       return tier.name.toLowerCase() !== tierName.toLowerCase();
     }
-    const filteredTiers = this.tiers.filter(filterFunc);
-    this.tiers = filteredTiers;
+    const filteredTiers = this._tiers.filter(filterFunc);
+    this._tiers = filteredTiers;
     this.sortTiers();
   }
 
@@ -45,7 +67,7 @@ export class RoomService {
     const sortFunc = (o1: Tier, o2: Tier) => {
       return o1.ranking - o2.ranking;
     }
-    const sortedTiers: Tier[] = this.tiers.sort(sortFunc);
-    this.tiers = sortedTiers;
+    const sortedTiers: Tier[] = this._tiers.sort(sortFunc);
+    this._tiers = sortedTiers;
   }
 }
