@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientTierlistService } from 'src/app/tier-list/services/client-tierlist.service';
+import { GlobalTierlistService } from 'src/app/tier-list/services/global-tierlist.service';
 
 @Component({
   selector: 'app-board',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    clientTierListSvc: ClientTierlistService,
+    globalTierListSvc: GlobalTierlistService
+  ) { }
 
   ngOnInit(): void {
   }
