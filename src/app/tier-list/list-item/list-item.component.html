@@ -1,1 +1,9 @@
-<p>list-item works!</p>
+<div class="component">
+    <!-- state checking -->
+    <div class="main-container name-only" *ngIf="isNameOnly()">
+        <!-- just a big ol name in the box -->
+    </div>
+    <div class="main-container url-only" *ngIf="isUrlOnly() || isNameUrl()">
+        <!-- just a big ol image in the box -->
+    </div>
+</div>
