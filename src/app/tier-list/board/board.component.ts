@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientTierlistService } from 'src/app/tier-list/services/client-tierlist.service';
-import { RoomService } from '../services/room.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 
@@ -11,14 +9,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class BoardComponent implements OnInit {
 
-  constructor(
-    clientTierListSvc: ClientTierlistService,
-    roomSvc: RoomService
-  ) { }
+  
+
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-
 
 }

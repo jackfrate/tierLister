@@ -3,11 +3,11 @@
 
 export class TierListItemFactory {
 
-    public static makeItemWithName(name: string): TierListItem {
+    public static makeItemWithName(name: string): NameTierListItem {
         return { name: name };
     }
 
-    public static makeItemWithUrl(url: string): TierListItem {
+    public static makeItemWithUrl(url: string): UrlTierListItem {
         return { url: url };
     }
 }
