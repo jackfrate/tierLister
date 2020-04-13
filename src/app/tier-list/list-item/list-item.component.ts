@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TierListItem } from '../plain-objects/tier-list-item';
 
 @Component({
   selector: 'app-list-item',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
+  @Input() listItem: TierListItem;
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
