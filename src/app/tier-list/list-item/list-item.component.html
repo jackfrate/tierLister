@@ -1,1 +1,11 @@
-<p>list-item works!</p>
+<div class="list-item">
+    <!-- if we have a url state -->
+    <div class="url-state" *ngIf="itemState === urlItemState">
+        <!-- just show a square image, we need state for types of cropping -->
+    </div>
+
+    <!-- if we have a name state -->
+    <div class="name-state" *ngIf="itemState === nameItemState">
+        <!-- just show the name in the space here -->
+    </div>
+</div>
