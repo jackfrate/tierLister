@@ -1,0 +1,26 @@
+.list-item {
+    // test stuff
+    min-width: 90px;
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    border-color: blue;
+    border-style: dotted;
+}
+
+img {
+    overflow: hidden;
+    object-fit: cover;
+    // test stuff
+    max-width: 95px;
+    ;
+    max-height: 95px;
+}
+
+.tier-label {
+    min-width: 100px;
+    min-height: 100px;
+    border-color: black;
+    border-style: solid;
+    border-width: 7px;
+}

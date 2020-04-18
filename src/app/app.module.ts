@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+
 
 import { environment } from "src/environments/environment";
 import { BoardComponent } from './tier-list/board/board.component';
@@ -21,7 +23,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     // default angualr
     BrowserModule,
     DragDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

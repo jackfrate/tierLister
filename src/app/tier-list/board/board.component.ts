@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class BoardComponent implements OnInit {
 
   constructor() {
     this.setupTiers();
+    this.doDummyData();
     // this.nonTiered = [];
   }
 
@@ -46,6 +48,30 @@ export class BoardComponent implements OnInit {
     this.tiers.set(this.D, []);
     this.tiers.set(this.F, []);
     this.tiers.set(this.NOT_SET, []);
+  }
+
+  private doDummyData() {
+    this.tiers.set(this.NOT_SET, [
+      {
+        name: "jack"
+      },
+      {
+        url: "https://i.imgur.com/uLZX5Wwg.jpg"
+      }
+
+    ])
+  }
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
 }

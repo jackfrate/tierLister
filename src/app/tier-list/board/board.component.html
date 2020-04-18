@@ -1,7 +1,11 @@
 <div class="board">
-  <div cdkDropListGroup class="tiers">
-    <div cdkDropList *ngFor="let list of getTiers()" class="tier">
-      
+    <div cdkDropListGroup class="tiers">
+        <div cdkDropList [cdkDropListData]="list" *ngFor="let list of getTiers()" (cdkDropListDropped)="drop($event)" class="tier">
+
+            <!-- containers for all items -->
+            <div cdkDrag [cdkDragData]="item" *ngFor="let item of list" class="tier-item">
+                <app-list-item [listItem]="item"></app-list-item>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
