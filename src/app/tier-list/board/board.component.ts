@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { KeyValue } from '@angular/common';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class BoardComponent implements OnInit {
   readonly C = 'C';
   readonly D = 'D';
   readonly F = 'F';
-  readonly NOT_SET = 'NOT_SET';
+  readonly NOT_SET = 'NOT SET';
 
   tiers: Map<string, TierListItem[]>;
   // nonTiered: TierListItem[];
@@ -58,8 +59,7 @@ export class BoardComponent implements OnInit {
       {
         url: "https://i.imgur.com/uLZX5Wwg.jpg"
       }
-
-    ])
+    ]);
   }
 
 
@@ -72,6 +72,23 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  /**
+   * orders the tiers from the map properly
+   * @param a
+   * @param b
+   */
+  compareFn(a: KeyValue<string, TierListItem[]>, b: KeyValue<string, TierListItem[]>): number {
+    // always put 'S' first
+    if (a.key === this.S) {
+      return 1;
+    }
+    if (b.key === this.S) {
+      return -1;
+    }
+    // normal stuff (asccending order)
+    return a.key.localeCompare(b.key);
   }
 
 }
