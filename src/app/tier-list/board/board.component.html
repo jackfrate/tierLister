@@ -2,14 +2,14 @@
     <div cdkDropListGroup class="tiers">
         <div cdkDropList [cdkDropListData]="entry.value" *ngFor="let entry of tiers | keyvalue : compareFn" (cdkDropListDropped)="drop($event)" class="tier">
             <!-- labels for tiers -->
-            <div class="tier-label">
+            <div class="tier-label" [style.background-color]="colorMap.get(entry.key)">
                 <h1>
                     {{entry.key}}
                 </h1>
             </div>
             <!-- containers for all items -->
-            <div cdkDrag [cdkDragData]="item" *ngFor="let item of entry.value" class="tier-item">
-                <app-list-item [listItem]="item"></app-list-item>
+            <div cdkDrag [cdkDragData]=" item " *ngFor="let item of entry.value " class="tier-item ">
+                <app-list-item [listItem]="item "></app-list-item>
             </div>
         </div>
     </div>

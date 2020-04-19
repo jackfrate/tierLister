@@ -11,21 +11,24 @@ import { KeyValue } from '@angular/common';
 })
 export class BoardComponent implements OnInit {
 
-  readonly S = 'S';
-  readonly A = 'A';
-  readonly B = 'B';
-  readonly C = 'C';
-  readonly D = 'D';
-  readonly F = 'F';
-  readonly NOT_SET = 'NOT SET';
+  static readonly S = 'S';
+  static readonly A = 'A';
+  static readonly B = 'B';
+  static readonly C = 'C';
+  static readonly D = 'D';
+  static readonly E = 'E';
+  static readonly F = 'F';
+  static readonly NOT_SET = 'None';
 
   tiers: Map<string, TierListItem[]>;
-  // nonTiered: TierListItem[];
+
+  colorMap: Map<string, string>;
 
   constructor() {
     this.setupTiers();
+    this.setupColorMap();
+    // test stuff
     this.doDummyData();
-    // this.nonTiered = [];
   }
 
   ngOnInit(): void {
@@ -42,17 +45,30 @@ export class BoardComponent implements OnInit {
   private setupTiers() {
     // setup tier map
     this.tiers = new Map();
-    this.tiers.set(this.S, []);
-    this.tiers.set(this.A, []);
-    this.tiers.set(this.B, []);
-    this.tiers.set(this.C, []);
-    this.tiers.set(this.D, []);
-    this.tiers.set(this.F, []);
-    this.tiers.set(this.NOT_SET, []);
+    this.tiers.set(BoardComponent.S, []);
+    this.tiers.set(BoardComponent.A, []);
+    this.tiers.set(BoardComponent.B, []);
+    this.tiers.set(BoardComponent.C, []);
+    this.tiers.set(BoardComponent.D, []);
+    this.tiers.set(BoardComponent.E, []);
+    this.tiers.set(BoardComponent.F, []);
+    this.tiers.set(BoardComponent.NOT_SET, []);
+  }
+
+  private setupColorMap() {
+    this.colorMap = new Map();
+    this.colorMap.set(BoardComponent.S, "#ff7f7f");
+    this.colorMap.set(BoardComponent.A, "#ffbf7f");
+    this.colorMap.set(BoardComponent.B, "#ffff7f");
+    this.colorMap.set(BoardComponent.C, "#7fff7f");
+    this.colorMap.set(BoardComponent.D, "#7fbfff");
+    this.colorMap.set(BoardComponent.E, "#7f7fff");
+    this.colorMap.set(BoardComponent.F, "#ff7fff");
+    this.colorMap.set(BoardComponent.NOT_SET, "#F8F8FF");
   }
 
   private doDummyData() {
-    this.tiers.set(this.NOT_SET, [
+    this.tiers.set(BoardComponent.NOT_SET, [
       {
         name: "jack"
       },
@@ -80,15 +96,8 @@ export class BoardComponent implements OnInit {
    * @param b
    */
   compareFn(a: KeyValue<string, TierListItem[]>, b: KeyValue<string, TierListItem[]>): number {
-    // always put 'S' first
-    if (a.key === this.S) {
-      return 1;
-    }
-    if (b.key === this.S) {
-      return -1;
-    }
-    // normal stuff (asccending order)
-    return a.key.localeCompare(b.key);
+    // this ensures that we sort in order of insertion
+    return 0;
   }
 
 }

@@ -1,11 +1,36 @@
+.board {
+    display: flex;
+    flex-flow: column;
+    align-content: stretch;
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
 .tier {
     display: flex;
-
-
+    flex-flow: row;
+    flex-grow: 1;
+    align-items: stretch;
+    justify-content: stretch;
     // testing stuff
-    min-width: 100px;
-    min-height: 100px;
+    // min-width: 110px;
+    // min-height: 12.5%;
+    // min-height: 100px;
     border-color: black;
     border-style: solid;
     border-width: 7px;
+}
+
+.tier-label {
+    display: flex;
+    justify-content: center;
+    min-width: 90px;
+    // min-height: 90px;
+    height: 100%;
+    border-right: 5px solid black;
+}
+
+.tier-item {
+    margin: 4px;
 }
