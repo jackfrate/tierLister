@@ -42,6 +42,24 @@ export class BoardComponent implements OnInit {
     return ret;
   }
 
+  addTierItem(str: string, isUrl?: boolean) {
+    const tierItem = {
+      url: null,
+      name: null
+    };
+
+    if (isUrl) {
+      tierItem.url = str;
+    }
+
+    if (!isUrl) {
+      tierItem.name = str;
+    }
+
+    this.tiers.get(BoardComponent.NOT_SET)
+      .push();
+  }
+
   private setupTiers() {
     // setup tier map
     this.tiers = new Map();

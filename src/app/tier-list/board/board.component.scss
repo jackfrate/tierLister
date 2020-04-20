@@ -1,41 +1,68 @@
+// font imports
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Shadows+Into+Light&display=swap";
+
 .board {
+    font-family: "Roboto", sans-serif;
+
     display: flex;
     flex-direction: column;
-    // align-content: stretch;
-    // justify-content: stretch;
+
     background-color: #1a1a1a;
-    min-height: 100vh;
-    min-width: 100vw;
-    padding-bottom: 0px;
-}
-
-.tiers {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     min-height: 100%;
-}
+    min-width: 100%;
 
-.tier {
-    // flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex: 1;
+    .tiers {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
 
-    border-color: black;
-    border-style: solid;
-    border-width: 7px;
-}
+        .tier {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
 
-.tier-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 90px;
-    // min-height: 90px;
-    border-right: 5px solid black;
-}
+            border-color: black;
+            border-style: solid;
+            border-width: 7px;
 
-.tier-item {
-    margin-left: 10px;
+            .tier-label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-width: 100px;
+                border-right: 5px solid black;
+            }
+
+            .tier-item {
+                // margins controlled in here,
+                // all other css done in the component
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .bottom-bar {
+        display: flex;
+        flex-direction: row;
+        .title-box {
+            // TODO: do like fonts and stuff
+
+            font-size: 110%;
+            color: whitesmoke;
+            font-family: "Shadows Into Light", cursive;
+
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            h3 {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                margin-left: 10px;
+            }
+        }
+
+        .button-box {
+            // button themes and stuff
+        }
+    }
 }

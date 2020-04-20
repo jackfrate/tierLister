@@ -1,6 +1,7 @@
 <div class="board">
     <div cdkDropListGroup class="tiers">
-        <div cdkDropList [cdkDropListData]="entry.value" *ngFor="let entry of tiers | keyvalue : compareFn" (cdkDropListDropped)="drop($event)" class="tier">
+        <!-- for each tier -->
+        <div class="tier" cdkDropList [cdkDropListData]="entry.value" *ngFor="let entry of tiers | keyvalue : compareFn" (cdkDropListDropped)="drop($event)">
             <!-- labels for tiers -->
             <div class="tier-label" [style.background-color]="colorMap.get(entry.key)">
                 <h1>
@@ -8,9 +9,18 @@
                 </h1>
             </div>
             <!-- containers for all items -->
-            <div cdkDrag [cdkDragData]=" item " *ngFor="let item of entry.value " class="tier-item ">
-                <app-list-item [listItem]="item "></app-list-item>
+            <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of entry.value">
+                <!-- the tier items -->
+                <app-list-item [listItem]="item"></app-list-item>
             </div>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <div class="title-box">
+            <h3>TIER LISTER</h3>
+        </div>
+        <div class="button-box">
+            
         </div>
     </div>
 </div>
