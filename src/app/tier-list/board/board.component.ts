@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { KeyValue } from '@angular/common';
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class BoardComponent implements OnInit {
 
   colorMap: Map<string, string>;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.setupTiers();
     this.setupColorMap();
     // test stuff
@@ -58,6 +60,13 @@ export class BoardComponent implements OnInit {
 
     this.tiers.get(BoardComponent.NOT_SET)
       .push();
+  }
+
+  /**
+   * exports the tierlist to json
+   */
+  exportToJSON() {
+    return;
   }
 
   private setupTiers() {
@@ -116,6 +125,31 @@ export class BoardComponent implements OnInit {
   compareFn(a: KeyValue<string, TierListItem[]>, b: KeyValue<string, TierListItem[]>): number {
     // this ensures that we sort in order of insertion
     return 0;
+  }
+
+}
+
+//
+// the pop up dialog
+//
+
+interface DialogData {
+  url: string,
+  name: string
+}
+
+@Component({
+  selector: 'app-new-item-dialog',
+  templateUrl: 'new-item-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
