@@ -73,7 +73,7 @@ export class BoardComponent implements OnInit {
         name: "jack"
       },
       {
-        url: "https://i.imgur.com/uLZX5Wwg.jpg"
+        url: "https://www.freepnglogos.com/uploads/mcdonalds-png-logo/mcdonalds-png-logo-simple-m-1.png"
       }
     ]);
   }
