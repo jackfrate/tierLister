@@ -44,6 +44,7 @@
     .bottom-bar {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         .title-box {
             // TODO: do like fonts and stuff
 
@@ -62,7 +63,12 @@
         }
 
         .button-box {
+            margin-right: 10px;
+            button {
+                margin: 5px;
+            }
             // button themes and stuff
+            justify-content: space-evenly;
         }
     }
 }
