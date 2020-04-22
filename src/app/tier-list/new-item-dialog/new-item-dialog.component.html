@@ -1,24 +1,29 @@
 <div class="dialog">
-    <h1 mat-dialog-title>Add New Item</h1>
-    <div mat-dialog-content>
-        <!-- for entering a link -->
-        <p>Enter an image link</p>
-        <mat-form-field (keyup.enter)="makeTierItem()">
-            <mat-label>Image Link</mat-label>
-            <input #urlForm="matInput" matInput [(ngModel)]="tierItem.url">
-        </mat-form-field>
+    <div class="form-stuff">
+        <h1 mat-dialog-title>Add New Item</h1>
+        <div mat-dialog-content>
+            <!-- for entering a link -->
+            <p>Enter an image link</p>
+            <mat-form-field (keyup.enter)="makeTierItem()">
+                <mat-label>Image Link</mat-label>
+                <input #urlForm="matInput" matInput [(ngModel)]="tierItem.url">
+            </mat-form-field>
 
-        <!-- for entering a name -->
-        <p>Enter an item name</p>
-        <mat-form-field (keyup.enter)="makeTierItem()">
-            <mat-label>Item Name</mat-label>
-            <input #nameForm="matInput" matInput [(ngModel)]="tierItem.name">
-        </mat-form-field>
+            <!-- for entering a name -->
+            <p>Enter an item name</p>
+            <mat-form-field (keyup.enter)="makeTierItem()">
+                <mat-label>Item Name</mat-label>
+                <input #nameForm="matInput" matInput [(ngModel)]="tierItem.name">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <!-- submit new thing -->
+            <button mat-raised-button color="primary" (click)="onCreateButton()">Create</button>
+            <!-- close -->
+            <button mat-button color="accent" [mat-dialog-close]>Close</button>
+        </div>
     </div>
-    <div mat-dialog-actions>
-        <!-- submit new thing -->
-        <button mat-raised-button color="primary" (click)="onCreateButton()">Create</button>
-        <!-- close -->
-        <button mat-button color="accent" [mat-dialog-close]>Close</button>
+    <div class="preview">
+        <app-list-item [listItem]="tierItem"></app-list-item>
     </div>
 </div>

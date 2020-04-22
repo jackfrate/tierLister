@@ -15,10 +15,10 @@ export class ListItemComponent implements OnInit {
 
   // style stuff
   static readonly itemBackgroundColors: string[] = [
-    "#4a6572",
-    "#5d1049",
+    // "#4a6572",s
+    // "#5d1049",
     "#004484",
-    "#356859"
+    // "#356859"
   ];
 
   backgroundColor: string;
