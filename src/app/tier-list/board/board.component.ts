@@ -5,6 +5,8 @@ import { KeyValue } from '@angular/common';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
+import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
 
 
 @Component({
@@ -23,18 +25,31 @@ export class BoardComponent implements OnInit {
   static readonly F = 'F';
   static readonly NOT_SET = 'None';
 
+  // TODO: change these lol
+  boardName: string = 'jack';
+  boardAuthor: string = 'jack';
+
   tiers: Map<string, TierListItem[]>;
 
   colorMap: Map<string, string>;
 
-  constructor(public dialog: MatDialog) {
-    this.setupTiers();
+  constructor(
+    public dialog: MatDialog,
+    private JsonHandleSvc: JsonHandlerService
+  ) {
+    this.setupTierList();
     this.setupColorMap();
     // test stuff
     this.doDummyData();
   }
 
   ngOnInit(): void {
+    // TODO: remove test stuff, put this in unit  test
+    const enc = this.exportToJsonLink();
+    console.log(enc);
+    console.log('===============');
+    const translated: SavedBoard = this.JsonHandleSvc.translateEncodedJson(enc);
+    console.log(translated);
   }
 
   getTiers(): TierListItem[][] {
@@ -55,23 +70,37 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
-
-    this.dialog.open(NewItemDialogComponent, {
-      width: '400px',
-      data: this.tiers.get(BoardComponent.NOT_SET)
-    });
+  exportToJson(): string {
+    return this.JsonHandleSvc.exportToJSON(
+      this.tiers,
+      this.boardName,
+      this.boardAuthor
+    );
   }
 
+  importFromJsonString(json: string) {
 
-  /**
-   * exports the tierlist to json
-   */
-  exportToJSON() {
-    return;
   }
 
-  private setupTiers() {
+  exportToJsonLink(): string {
+    const jsonValue = this.JsonHandleSvc.exportToEncodedJSON(
+      this.tiers,
+      this.boardName,
+      this.boardAuthor
+    );
+    // TODO: make that the value of the link
+    return jsonValue;
+  }
+
+  importFromJsonLink(link: string) {
+
+  }
+
+  //
+  // private and privateish stuff
+  //
+
+  private setupTierList() {
     // setup tier map
     this.tiers = new Map();
     this.tiers.set(BoardComponent.S, []);
@@ -110,6 +139,14 @@ export class BoardComponent implements OnInit {
   // methods that should kinda be private but aren't because of template
   // feel free to use them, just be careful I guess
 
+  openDialog(): void {
+
+    this.dialog.open(NewItemDialogComponent, {
+      width: '400px',
+      data: this.tiers.get(BoardComponent.NOT_SET)
+    });
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -131,13 +168,4 @@ export class BoardComponent implements OnInit {
     return 0;
   }
 
-}
-
-//
-// the pop up dialog
-//
-
-export interface DialogData {
-  url?: string,
-  name?: string
 }
