@@ -12,7 +12,7 @@
                 <!-- containers for all items -->
                 <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of entry.value">
                     <!-- the tier items -->
-                    <app-list-item [listItem]="item"></app-list-item>
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get(entry.key)"></app-list-item>
                 </div>
             </div>
         </div>
