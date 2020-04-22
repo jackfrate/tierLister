@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { KeyValue } from '@angular/common';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
 
 
 @Component({
@@ -44,23 +45,28 @@ export class BoardComponent implements OnInit {
     return ret;
   }
 
-  addTierItem(str: string, isUrl?: boolean) {
-    const tierItem = {
-      url: null,
-      name: null
-    };
-
-    if (isUrl) {
-      tierItem.url = str;
+  addTierItem(tierItem: TierListItem) {
+    // do nothing if we have nothing
+    if (!tierItem.name && !tierItem.url) {
+      return;
     }
-
-    if (!isUrl) {
-      tierItem.name = str;
+    else {
+      this.tiers.get(BoardComponent.NOT_SET).push(tierItem);
     }
-
-    this.tiers.get(BoardComponent.NOT_SET)
-      .push();
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(NewItemDialogComponent, {
+      width: '250px',
+      data: { url: null, name: null }
+    });
+
+    dialogRef.afterClosed().subscribe((result: TierListItem) => {
+      console.log('The dialog was closed');
+      this.addTierItem(result);
+    });
+  }
+
 
   /**
    * exports the tierlist to json
@@ -134,6 +140,6 @@ export class BoardComponent implements OnInit {
 //
 
 export interface DialogData {
-  url: string,
-  name: string
+  url?: string,
+  name?: string
 }
