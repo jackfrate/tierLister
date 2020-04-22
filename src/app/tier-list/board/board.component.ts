@@ -107,6 +107,8 @@ export class BoardComponent implements OnInit {
     ]);
   }
 
+  // methods that should kinda be private but aren't because of template
+  // feel free to use them, just be careful I guess
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

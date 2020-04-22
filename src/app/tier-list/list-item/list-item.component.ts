@@ -8,7 +8,15 @@ import { TierListItem } from '../plain-objects/tier-list-item';
 })
 export class ListItemComponent implements OnInit {
 
+  static readonly itemBackgroundColors: string[] = [
+    "#4a6572",
+    "#5d1049",
+    "#004484",
+    "#356859"
+  ];
+
   @Input() listItem: TierListItem;
+
   url: string;
   name: string;
 
@@ -18,8 +26,11 @@ export class ListItemComponent implements OnInit {
     this.determineState();
   }
 
-  getListForTier(tierName: string) {
-
+  getRandomBackgroundColor(): string {
+    // get a random color
+    return ListItemComponent.itemBackgroundColors[
+      Math.floor(Math.random() * ListItemComponent.itemBackgroundColors.length)
+    ];
   }
 
   // state related methods
