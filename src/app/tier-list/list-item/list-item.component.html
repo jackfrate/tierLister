@@ -6,7 +6,7 @@
     </div>
 
     <!-- if we have a name state -->
-    <div class="name-state" *ngIf="name">
+    <div class="name-state" *ngIf="name" [style.background-color]="backgroundColor">
         <!-- just show the name in the space here -->
         <h2>{{name}}</h2>
     </div>

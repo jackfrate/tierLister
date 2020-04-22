@@ -17,7 +17,9 @@ div.url-state {
 }
 
 div.name-state {
-    flex-shrink: 1;
+    // flex-shrink: 1;
+    color: whitesmoke;
+    display: flex;
 }
 
 img {
