@@ -133,23 +133,7 @@ export class BoardComponent implements OnInit {
 // the pop up dialog
 //
 
-interface DialogData {
+export interface DialogData {
   url: string,
   name: string
-}
-
-@Component({
-  selector: 'app-new-item-dialog',
-  templateUrl: 'new-item-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

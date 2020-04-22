@@ -14,12 +14,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 // material
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { NewItemDialogComponent } from './tier-list/new-item-dialog/new-item-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    ListItemComponent
+    ListItemComponent,
+    NewItemDialogComponent
   ],
   imports: [
     // default angualr
