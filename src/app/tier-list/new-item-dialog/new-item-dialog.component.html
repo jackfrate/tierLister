@@ -5,14 +5,14 @@
         <p>Enter an image link</p>
         <mat-form-field>
             <mat-label>Image Link</mat-label>
-            <input matInput [(ngModel)]="tierItem.url">
+            <input #urlForm matInput [(ngModel)]="tierItem.url">
         </mat-form-field>
 
         <!-- for entering a name -->
         <p>Enter an item name</p>
         <mat-form-field>
             <mat-label>Item Name</mat-label>
-            <input matInput [(ngModel)]="tierItem.name">
+            <input #nameForm matInput [(ngModel)]="tierItem.name">
         </mat-form-field>
     </div>
     <div mat-dialog-actions>
