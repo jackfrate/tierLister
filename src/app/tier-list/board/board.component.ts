@@ -82,6 +82,8 @@ export class BoardComponent implements OnInit {
 
   }
 
+  // TODO: need method to remove object from list (use filter and stuff)
+
   exportToJsonLink(): string {
     const jsonValue = this.JsonHandleSvc.exportToEncodedJSON(
       this.tiers,
