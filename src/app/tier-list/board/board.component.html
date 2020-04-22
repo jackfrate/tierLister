@@ -22,23 +22,30 @@
         <div class="title-box">
             <h3>TIER LISTER</h3>
             <!-- inputs for name and author -->
+            <!-- add new item -->
+            <button id="add-button" mat-raised-button color="primary" (click)="openDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
         <!-- the buttons -->
         <div class="button-box">
-            <!-- add new item -->
-            <button mat-raised-button color="primary" (click)="openDialog()">
-                <mat-icon>add</mat-icon>
-            </button>
             <!-- upload tierlist -->
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="accent">
+                <mat-icon>link</mat-icon>
+                Copy Link
+            </button>
+            <button mat-raised-button color="accent">
                 <mat-icon>publish</mat-icon>
+                Upload File
             </button>
-            <!-- export tierlist -->
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="accent">
+                <mat-icon>link</mat-icon>
+                Import From Link
+            </button>
+            <button mat-raised-button color="accent">
                 <mat-icon>get_app</mat-icon>
+                Download File
             </button>
-            <!-- TODO: add get link button -->
-            <!-- TODO: add import from link button -->
         </div>
     </div>
 </div>

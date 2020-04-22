@@ -54,6 +54,7 @@ export class JsonHandlerService {
 
   // TODO: make private
   translateEncodedJson(encoded: string): SavedBoard {
+    // TODO: wrap in try/catch
     const decodedJson = this.encoder.decodeValue(encoded);
     return this.importFromJson(decodedJson);
   }

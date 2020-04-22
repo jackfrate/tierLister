@@ -58,6 +58,9 @@
         margin-bottom: 5px;
         .title-box {
             // TODO: do like fonts and stuff
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
 
             font-size: 110%;
             color: whitesmoke;
@@ -69,6 +72,7 @@
             h3 {
                 margin-top: 0px;
                 margin-bottom: 0px;
+                margin-right: 20px;
                 margin-left: 10px;
             }
         }
