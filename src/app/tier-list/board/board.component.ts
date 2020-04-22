@@ -56,14 +56,10 @@ export class BoardComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(NewItemDialogComponent, {
-      width: '250px',
-      data: { url: null, name: null }
-    });
 
-    dialogRef.afterClosed().subscribe((result: TierListItem) => {
-      console.log('The dialog was closed');
-      this.addTierItem(result);
+    this.dialog.open(NewItemDialogComponent, {
+      width: '400px',
+      data: this.tiers.get(BoardComponent.NOT_SET)
     });
   }
 

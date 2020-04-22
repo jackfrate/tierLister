@@ -5,19 +5,20 @@
         <p>Enter an image link</p>
         <mat-form-field>
             <mat-label>Image Link</mat-label>
-            <input matInput [(ngModel)]="data.url">
+            <input matInput [(ngModel)]="tierItem.url">
         </mat-form-field>
 
         <!-- for entering a name -->
         <p>Enter an item name</p>
         <mat-form-field>
             <mat-label>Item Name</mat-label>
-            <input matInput [(ngModel)]="data.name">
+            <input matInput [(ngModel)]="tierItem.name">
         </mat-form-field>
     </div>
     <div mat-dialog-actions>
-        <button mat-button (click)="onCancel()">Cancel</button>
         <!-- submit new thing -->
-        <button mat-button [mat-dialog-close]="onCreate()" cdkFocusInitial>Create Item</button>
+        <button mat-raised-button color="primary" (click)="makeTierItem()">Create</button>
+        <!-- close -->
+        <button mat-button [mat-dialog-close]>Close</button>
     </div>
 </div>
