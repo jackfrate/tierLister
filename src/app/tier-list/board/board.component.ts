@@ -9,6 +9,8 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
+import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
+import { BoardSettingsService } from '../services/board-settings.service';
 
 
 @Component({
@@ -28,8 +30,6 @@ export class BoardComponent implements OnInit {
   static readonly NOT_SET = 'None';
 
   // TODO: change these lol
-  boardName: string = 'yeet';
-  boardAuthor: string = 'jack';
 
   tiers: Map<string, TierListItem[]>;
 
@@ -41,7 +41,8 @@ export class BoardComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private jsonHandleSvc: JsonHandlerService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private boardSettingsSvc: BoardSettingsService
   ) {
     this.setUpBoard();
     this.setupColorMap();
@@ -72,8 +73,8 @@ export class BoardComponent implements OnInit {
   exportToJson(): string {
     return this.jsonHandleSvc.exportToJSON(
       this.tiers,
-      this.boardName,
-      this.boardAuthor
+      this.boardSettingsSvc.name,
+      this.boardSettingsSvc.author
     );
   }
 
@@ -83,7 +84,7 @@ export class BoardComponent implements OnInit {
 
   getJsonDownloadLink(): SafeUrl {
     const jsonSavedBoard: string = this
-      .jsonHandleSvc.exportToJSON(this.tiers, this.boardName, this.boardAuthor);
+      .jsonHandleSvc.exportToJSON(this.tiers, this.boardSettingsSvc.name, this.boardSettingsSvc.author);
     const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
     const urlDownload = window.URL.createObjectURL(blob);
     const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
@@ -91,7 +92,7 @@ export class BoardComponent implements OnInit {
   }
 
   getDownloadName(): string {
-    return `${this.boardName}.json`;
+    return `${this.boardSettingsSvc.name}.json`;
   }
 
   //
@@ -101,6 +102,12 @@ export class BoardComponent implements OnInit {
 
   private setUpBoard() {
     this.setupTierList();
+    this.setUpBoardSettings();
+  }
+
+  private setUpBoardSettings() {
+    // this.boardName = this.boardSettingsSvc.name;
+    // this.boardAuthor = this.boardSettingsSvc.author;
   }
 
   private setupTierList() {
@@ -142,11 +149,17 @@ export class BoardComponent implements OnInit {
   // methods that should kinda be private but aren't because of template
   // feel free to use them, just be careful I guess
 
-  openDialog(): void {
-
+  openNewItemDialog(): void {
     this.dialog.open(NewItemDialogComponent, {
       width: '400px',
       data: this.tiers.get(BoardComponent.NOT_SET)
+    });
+  }
+
+  openBoardSettingsDialog(): void {
+    this.dialog.open(BoardSettingsDialogComponent, {
+      width: '250px',
+      // data: { boardName: this.boardName, boardAuthor: this.boardAuthor }
     });
   }
 

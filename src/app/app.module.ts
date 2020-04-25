@@ -20,14 +20,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
-import { ClipboardModule } from '@angular/cdk/clipboard'
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
     ListItemComponent,
-    NewItemDialogComponent
+    NewItemDialogComponent,
+    BoardSettingsDialogComponent
   ],
   imports: [
     // default angualr
@@ -45,7 +47,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
     ClipboardModule
   ],
   entryComponents: [
-    NewItemDialogComponent
+    NewItemDialogComponent,
+    BoardSettingsDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

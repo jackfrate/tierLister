@@ -15,7 +15,8 @@ export class NewItemDialogComponent implements OnInit {
   @ViewChild('urlForm') urlForm: MatInput;
   @ViewChild('nameForm') nameForm: MatInput;
 
-  constructor(public dialogRef: MatDialogRef<NewItemDialogComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<NewItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TierListItem[]
   ) {
     this.tierItem = { url: '', name: '' };

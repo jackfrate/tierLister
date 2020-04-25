@@ -1,0 +1,31 @@
+<div class="dialog">
+    <div class="form-stuff">
+        <h1 mat-dialog-title>Board Settings</h1>
+        <div mat-dialog-content>
+            <!-- inputs for name and author -->
+            <div class="board-name-field">
+                <mat-form-field>
+                    <mat-label>Board Name</mat-label>
+                    <input #boardNameInput matInput [(ngModel)]="name" type="text">
+                </mat-form-field>
+            </div>
+
+            <div class="board-author-field">
+                <mat-form-field>
+                    <mat-label>Board Author</mat-label>
+                    <input #boardAuthorInput matInput [(ngModel)]="author" type="text">
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <!-- submit new thing -->
+            <!-- TODO: need conditional for adding or for changing (we open from diff plaes, import that from the data) -->
+            <button mat-raised-button color="primary" (click)="submitButton()">Create</button>
+            <!-- close -->
+            <button mat-button color="accent" [mat-dialog-close]>Close</button>
+        </div>
+    </div>
+    <!-- <div class="preview">
+        <app-list-item [listItem]="tierItem"></app-list-item>
+    </div> -->
+</div>
