@@ -21,6 +21,8 @@ export class BoardSettingsService {
   author: string = 'jack';
   tiers: Map<string, TierListItem[]>;
 
+  // observable for tiers
+
   constructor(
     private jsonHandleSvc: JsonHandlerService,
     private sanitizer: DomSanitizer,
@@ -72,6 +74,8 @@ export class BoardSettingsService {
   }
 
   private setFromSavedBoard(saved: SavedBoard) {
+    console.log('YEET');
+
     this.tiers = saved.boardMap;
     this.name = saved.boardName;
     this.author = saved.boardAuthor;

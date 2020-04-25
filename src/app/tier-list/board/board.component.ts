@@ -28,11 +28,13 @@ export class BoardComponent implements OnInit {
     public dialog: MatDialog,
     private boardSettingsSvc: BoardSettingsService,
   ) {
-    this.setUpBoard();
     this.setupColorMap();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.setUpBoard();
+
+  }
 
   getTiers(): TierListItem[][] {
     return this.boardSettingsSvc.getTiers();
