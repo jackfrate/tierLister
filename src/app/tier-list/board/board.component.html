@@ -33,7 +33,7 @@
                 <mat-icon>publish</mat-icon>
             </button>
             <!-- TODO: have tierlist filename be the name of hte tierlist -->
-            <a [href]="getJsonDownloadLink()" download="board.json">
+            <a [href]="getJsonDownloadLink()" download={{getDownloadName()}}>
                 <button mat-raised-button color="accent">
                     <mat-icon>get_app</mat-icon>
                 </button>
