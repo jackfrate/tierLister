@@ -29,8 +29,6 @@ export class BoardComponent implements OnInit {
   static readonly F = 'F';
   static readonly NOT_SET = 'None';
 
-  // TODO: change these lol
-
   tiers: Map<string, TierListItem[]>;
 
   colorMap: Map<string, string>;
