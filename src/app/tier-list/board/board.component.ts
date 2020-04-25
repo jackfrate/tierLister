@@ -10,6 +10,7 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
+import { FileUploadService } from '../services/file-upload.service';
 
 
 @Component({
@@ -19,14 +20,7 @@ import { BoardSettingsService } from '../services/board-settings.service';
 })
 export class BoardComponent implements OnInit {
 
-  static readonly S = 'S';
-  static readonly A = 'A';
-  static readonly B = 'B';
-  static readonly C = 'C';
-  static readonly D = 'D';
-  static readonly E = 'E';
-  static readonly F = 'F';
-  static readonly NOT_SET = 'None';
+
 
   tiers: Map<string, TierListItem[]>;
 
@@ -39,12 +33,11 @@ export class BoardComponent implements OnInit {
     public dialog: MatDialog,
     private jsonHandleSvc: JsonHandlerService,
     private sanitizer: DomSanitizer,
-    private boardSettingsSvc: BoardSettingsService
+    private boardSettingsSvc: BoardSettingsService,
+    // private fileUploadSvc: FileUploadService
   ) {
     this.setUpBoard();
     this.setupColorMap();
-    // test stuff
-    this.doDummyData();
   }
 
   ngOnInit(): void { }
@@ -63,7 +56,7 @@ export class BoardComponent implements OnInit {
       return;
     }
     else {
-      this.tiers.get(BoardComponent.NOT_SET).push(tierItem);
+      this.tiers.get(BoardSettingsService.NOT_SET).push(tierItem);
     }
   }
 
@@ -103,38 +96,19 @@ export class BoardComponent implements OnInit {
 
   private setupTierList() {
     // setup tier map
-    this.tiers = new Map();
-    this.tiers.set(BoardComponent.S, []);
-    this.tiers.set(BoardComponent.A, []);
-    this.tiers.set(BoardComponent.B, []);
-    this.tiers.set(BoardComponent.C, []);
-    this.tiers.set(BoardComponent.D, []);
-    this.tiers.set(BoardComponent.E, []);
-    this.tiers.set(BoardComponent.F, []);
-    this.tiers.set(BoardComponent.NOT_SET, []);
+    this.tiers = this.boardSettingsSvc.tiers;
   }
 
   private setupColorMap() {
     this.colorMap = new Map();
-    this.colorMap.set(BoardComponent.S, "#ff7f7f");
-    this.colorMap.set(BoardComponent.A, "#ffbf7f");
-    this.colorMap.set(BoardComponent.B, "#ffff7f");
-    this.colorMap.set(BoardComponent.C, "#7fff7f");
-    this.colorMap.set(BoardComponent.D, "#7fbfff");
-    this.colorMap.set(BoardComponent.E, "#7f7fff");
-    this.colorMap.set(BoardComponent.F, "#ff7fff");
-    this.colorMap.set(BoardComponent.NOT_SET, "#F8F8FF");
-  }
-
-  private doDummyData() {
-    this.tiers.set(BoardComponent.NOT_SET, [
-      {
-        name: "jack"
-      },
-      {
-        url: "https://www.freepnglogos.com/uploads/mcdonalds-png-logo/mcdonalds-png-logo-simple-m-1.png"
-      }
-    ]);
+    this.colorMap.set(BoardSettingsService.S, "#ff7f7f");
+    this.colorMap.set(BoardSettingsService.A, "#ffbf7f");
+    this.colorMap.set(BoardSettingsService.B, "#ffff7f");
+    this.colorMap.set(BoardSettingsService.C, "#7fff7f");
+    this.colorMap.set(BoardSettingsService.D, "#7fbfff");
+    this.colorMap.set(BoardSettingsService.E, "#7f7fff");
+    this.colorMap.set(BoardSettingsService.F, "#ff7fff");
+    this.colorMap.set(BoardSettingsService.NOT_SET, "#F8F8FF");
   }
 
   // methods that should kinda be private but aren't because of template
@@ -143,7 +117,7 @@ export class BoardComponent implements OnInit {
   openNewItemDialog(): void {
     this.dialog.open(NewItemDialogComponent, {
       width: '400px',
-      data: this.tiers.get(BoardComponent.NOT_SET)
+      data: this.tiers.get(BoardSettingsService.NOT_SET)
     });
   }
 
