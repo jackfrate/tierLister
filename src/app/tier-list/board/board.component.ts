@@ -11,6 +11,7 @@ import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
 import { FileUploadService } from '../services/file-upload.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 
 @Component({
@@ -19,11 +20,7 @@ import { FileUploadService } from '../services/file-upload.service';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-
-
-
   tiers: Map<string, TierListItem[]>;
-
   colorMap: Map<string, string>;
 
   @ViewChild('boardNameInput') boardNameInput: MatInput;
@@ -31,10 +28,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private jsonHandleSvc: JsonHandlerService,
-    private sanitizer: DomSanitizer,
     private boardSettingsSvc: BoardSettingsService,
-    // private fileUploadSvc: FileUploadService
+    private fileUploadSvc: FileUploadService
   ) {
     this.setUpBoard();
     this.setupColorMap();
@@ -43,42 +38,19 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void { }
 
   getTiers(): TierListItem[][] {
-    const ret: TierListItem[][] = [];
-    this.tiers.forEach((value: TierListItem[]) => {
-      ret.push(value);
-    });
-    return ret;
+    return this.boardSettingsSvc.getTiers();
   }
 
   addTierItem(tierItem: TierListItem) {
-    // do nothing if we have nothing
-    if (!tierItem.name && !tierItem.url) {
-      return;
-    }
-    else {
-      this.tiers.get(BoardSettingsService.NOT_SET).push(tierItem);
-    }
+    this.boardSettingsSvc.addTierItem(tierItem);
   }
 
   exportToJson(): string {
-    return this.jsonHandleSvc.exportToJSON(
-      this.tiers,
-      this.boardSettingsSvc.name,
-      this.boardSettingsSvc.author
-    );
-  }
-
-  importFromJsonString(json: string) {
-
+    return this.boardSettingsSvc.exportToJson();
   }
 
   getJsonDownloadLink(): SafeUrl {
-    const jsonSavedBoard: string = this
-      .jsonHandleSvc.exportToJSON(this.tiers, this.boardSettingsSvc.name, this.boardSettingsSvc.author);
-    const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
-    const urlDownload = window.URL.createObjectURL(blob);
-    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
-    return uriDownload;
+    return this.boardSettingsSvc.getJsonDownloadLink();
   }
 
   getDownloadName(): string {
@@ -88,7 +60,6 @@ export class BoardComponent implements OnInit {
   //
   // private and privateish stuff
   //
-
 
   private setUpBoard() {
     this.setupTierList();

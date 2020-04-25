@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
+import { JsonHandlerService } from './json-handler.service';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +21,52 @@ export class BoardSettingsService {
   author: string = 'jack';
   tiers: Map<string, TierListItem[]>;
 
-  constructor() {
+  constructor(
+    private jsonHandleSvc: JsonHandlerService,
+    private sanitizer: DomSanitizer,
+  ) {
     this.setUpBoard();
     // test stuff
     this.doDummyData();
+  }
+
+  getTiers(): TierListItem[][] {
+    const ret: TierListItem[][] = [];
+    this.tiers.forEach((value: TierListItem[]) => {
+      ret.push(value);
+    });
+    return ret;
+  }
+
+  addTierItem(tierItem: TierListItem) {
+    // do nothing if we have nothing
+    if (!tierItem.name && !tierItem.url) {
+      return;
+    }
+    else {
+      this.tiers.get(BoardSettingsService.NOT_SET).push(tierItem);
+    }
+  }
+
+  exportToJson(): string {
+    return this.jsonHandleSvc.exportToJSON(
+      this.tiers,
+      this.name,
+      this.author
+    );
+  }
+
+  importFromJsonString(json: string) {
+
+  }
+
+  getJsonDownloadLink(): SafeUrl {
+    const jsonSavedBoard: string = this
+      .jsonHandleSvc.exportToJSON(this.tiers, this.name, this.author);
+    const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
+    return uriDownload;
   }
 
   private setUpBoard() {
@@ -42,6 +86,9 @@ export class BoardSettingsService {
     this.tiers.set(BoardSettingsService.NOT_SET, []);
   }
 
+  /**
+   * just test for a url item and an text item
+   */
   private doDummyData() {
     this.tiers.set(BoardSettingsService.NOT_SET, [
       {
