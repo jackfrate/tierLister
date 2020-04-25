@@ -9,6 +9,7 @@ import { FileUploadService } from '../services/file-upload.service';
 export class UploadDialogComponent implements OnInit {
   files: File[];
   chosenFile: File;
+
   constructor(private fileUploadSvc: FileUploadService) {
     this.files = this.fileUploadSvc.files;
   }
@@ -16,14 +17,13 @@ export class UploadDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectFile(file: File) {
-    this.fileUploadSvc.chosenFile = file;
+  getFileName(file: File) {
+    return file.name;
   }
 
-  getFileName(file: File) {
-    console.log(file);
-    console.log(file.name);
-    return String(file).replace('.json', '');
+  setBoardFromChosenFile() {
+    console.log(this.chosenFile);
+    this.fileUploadSvc.setBoardFromChosenFile(this.chosenFile);
   }
 
   // stuff we don't mess with
@@ -31,7 +31,7 @@ export class UploadDialogComponent implements OnInit {
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
-      this.files.push(element.name)
+      this.files.push(element);
     }
   }
 
