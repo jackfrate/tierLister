@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class JsonHandlerService {
 
   private encoder: HttpUrlEncodingCodec;
 
-  constructor(private route: ActivatedRoute) {
+  // used to download the json
+  downloadJsonLink: SafeUrl;
+
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {
     this.encoder = new HttpUrlEncodingCodec();
   }
 
@@ -60,6 +64,16 @@ export class JsonHandlerService {
     return this.importFromJson(decodedJson);
   }
 
+  downloadBoardJson(
+    map: Map<string, TierListItem[]>,
+    boardName?: string,
+    boardAuthor?: string
+  ) {
+    const jsonSavedBoard = this.exportToJSON(map, boardName, boardAuthor);
+    const uriDownload = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(jsonSavedBoard));
+    this.downloadJsonLink = uriDownload;
+  }
+
   private objToStrMap(obj: Object) {
     let strMap = new Map();
     for (let k of Object.keys(obj)) {
@@ -77,18 +91,6 @@ export class JsonHandlerService {
     }
     return obj;
   }
-
-  checkForBoardInUrl(): SavedBoard {
-    // if we have a board in the url, grab that
-    try {
-      const boardEncoded = +this.route.snapshot.paramMap.get('board');
-      return this.translateEncodedJson(boardEncoded.toString());
-    } catch {
-      // return falsey null, this is janky please fix it me
-      return null;
-    }
-  }
-
 }
 
 export interface SavedBoard {

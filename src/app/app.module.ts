@@ -1,6 +1,6 @@
 // angular stuff
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule , ViewChild} from '@angular/core';
+import { NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClipboardModule
   ],
   entryComponents: [
     NewItemDialogComponent

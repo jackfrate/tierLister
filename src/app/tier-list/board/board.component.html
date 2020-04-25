@@ -30,21 +30,23 @@
         <!-- the buttons -->
         <div class="button-box">
             <!-- upload tierlist -->
-            <button mat-raised-button color="accent">
+            <!-- <button mat-raised-button color="accent" [cdkCopyToClipboard]="exportToJsonLink()">
                 <mat-icon>link</mat-icon>
                 Copy Link
             </button>
             <button mat-raised-button color="accent">
                 <mat-icon>link</mat-icon>
                 Import From Link
-            </button>
+            </button> -->
             <button mat-raised-button color="accent">
                 <mat-icon>publish</mat-icon>
                 Upload File
             </button>
+            <!-- TODO: have tierlist filename be the name of hte tierlist -->
             <button mat-raised-button color="accent">
                 <mat-icon>get_app</mat-icon>
-                Download File
+                <!-- <a [href]="exportToJsonLink" download={{getDownloadName()}}>Download Files</a> -->
+
             </button>
         </div>
     </div>

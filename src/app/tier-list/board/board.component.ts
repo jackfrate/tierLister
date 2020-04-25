@@ -70,6 +70,11 @@ export class BoardComponent implements OnInit {
     }
   }
 
+
+  getDownloadName(): string {
+    return `${this.boardName}.json`
+  }
+
   exportToJson(): string {
     return this.jsonHandleSvc.exportToJSON(
       this.tiers,
@@ -98,24 +103,13 @@ export class BoardComponent implements OnInit {
 
   }
 
-  tryToLoadLink(input: string) {
-
-  }
-
   //
   // private and privateish stuff
   //
 
 
   private setUpBoard() {
-    if (this.jsonHandleSvc.checkForBoardInUrl()) {
-      const savedBoard: SavedBoard = this.jsonHandleSvc.checkForBoardInUrl();
-      this.tiers = savedBoard.boardMap;
-      this.boardName = savedBoard.boardName;
-      this.boardAuthor = savedBoard.boardAuthor;
-    } else {
-      this.setupTierList();
-    }
+    this.setupTierList();
   }
 
   private setupTierList() {
