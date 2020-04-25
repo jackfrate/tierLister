@@ -21,7 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component'
+import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component';
+import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/
     BoardComponent,
     ListItemComponent,
     NewItemDialogComponent,
-    BoardSettingsDialogComponent
+    BoardSettingsDialogComponent,
+    UploadDialogComponent
   ],
   imports: [
     // default angualr
