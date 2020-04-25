@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   static readonly NOT_SET = 'None';
 
   // TODO: change these lol
-  boardName: string = 'jack';
+  boardName: string = 'yeet';
   boardAuthor: string = 'jack';
 
   tiers: Map<string, TierListItem[]>;
@@ -35,9 +35,9 @@ export class BoardComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private JsonHandleSvc: JsonHandlerService
+    private jsonHandleSvc: JsonHandlerService
   ) {
-    this.setupTierList();
+    this.setUpBoard();
     this.setupColorMap();
     // test stuff
     this.doDummyData();
@@ -48,7 +48,7 @@ export class BoardComponent implements OnInit {
     const enc = this.exportToJsonLink();
     console.log(enc);
     console.log('===============');
-    const translated: SavedBoard = this.JsonHandleSvc.translateEncodedJson(enc);
+    const translated: SavedBoard = this.jsonHandleSvc.translateEncodedJson(enc);
     console.log(translated);
   }
 
@@ -71,7 +71,7 @@ export class BoardComponent implements OnInit {
   }
 
   exportToJson(): string {
-    return this.JsonHandleSvc.exportToJSON(
+    return this.jsonHandleSvc.exportToJSON(
       this.tiers,
       this.boardName,
       this.boardAuthor
@@ -85,7 +85,7 @@ export class BoardComponent implements OnInit {
   // TODO: need method to remove object from list (use filter and stuff)
 
   exportToJsonLink(): string {
-    const jsonValue = this.JsonHandleSvc.exportToEncodedJSON(
+    const jsonValue = this.jsonHandleSvc.exportToEncodedJSON(
       this.tiers,
       this.boardName,
       this.boardAuthor
@@ -98,9 +98,25 @@ export class BoardComponent implements OnInit {
 
   }
 
+  tryToLoadLink(input: string) {
+
+  }
+
   //
   // private and privateish stuff
   //
+
+
+  private setUpBoard() {
+    if (this.jsonHandleSvc.checkForBoardInUrl()) {
+      const savedBoard: SavedBoard = this.jsonHandleSvc.checkForBoardInUrl();
+      this.tiers = savedBoard.boardMap;
+      this.boardName = savedBoard.boardName;
+      this.boardAuthor = savedBoard.boardAuthor;
+    } else {
+      this.setupTierList();
+    }
+  }
 
   private setupTierList() {
     // setup tier map

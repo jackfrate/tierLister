@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class JsonHandlerService {
 
   private encoder: HttpUrlEncodingCodec;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.encoder = new HttpUrlEncodingCodec();
   }
 
@@ -75,6 +76,17 @@ export class JsonHandlerService {
       obj[k] = v;
     }
     return obj;
+  }
+
+  checkForBoardInUrl(): SavedBoard {
+    // if we have a board in the url, grab that
+    try {
+      const boardEncoded = +this.route.snapshot.paramMap.get('board');
+      return this.translateEncodedJson(boardEncoded.toString());
+    } catch {
+      // return falsey null, this is janky please fix it me
+      return null;
+    }
   }
 
 }
