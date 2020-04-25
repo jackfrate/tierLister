@@ -1,17 +1,14 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { KeyValue } from '@angular/common';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
-import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
-import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
-import { FileUploadService } from '../services/file-upload.service';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 
 @Component({
@@ -29,7 +26,6 @@ export class BoardComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private boardSettingsSvc: BoardSettingsService,
-    private fileUploadSvc: FileUploadService
   ) {
     this.setUpBoard();
     this.setupColorMap();
