@@ -22,8 +22,10 @@ export class BoardSettingsService {
   author: string = 'jack';
   tiers: Map<string, TierListItem[]>;
 
-  // observable for tiers
+  // observables
   tiersUpdate: Subject<Map<string, TierListItem[]>> = new Subject<Map<string, TierListItem[]>>();
+  // nameUpdate: Subject<string> = new Subject<string>();
+  // authorUpdate: Subject<string> = new Subject<string>();
 
   constructor(
     private jsonHandleSvc: JsonHandlerService,
@@ -76,8 +78,6 @@ export class BoardSettingsService {
   }
 
   private setFromSavedBoard(saved: SavedBoard) {
-    console.log('YEET');
-
     this.tiersUpdate.next(saved.boardMap);
     this.name = saved.boardName;
     this.author = saved.boardAuthor;
@@ -86,9 +86,15 @@ export class BoardSettingsService {
   private setUpBoard() {
     this.setupTierList();
     // now subscribe
-    this.tiersUpdate.subscribe((value) => {
+    this.tiersUpdate.subscribe((value: Map<string, TierListItem[]>) => {
       this.tiers = value;
     });
+    // this.nameUpdate.subscribe((value: string) => {
+    //   this.name = value;
+    // });
+    // this.authorUpdate.subscribe((value: string) => {
+    //   this.author = value;
+    // });
   }
 
   private setupTierList() {

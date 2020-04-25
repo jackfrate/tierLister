@@ -22,7 +22,6 @@ export class UploadDialogComponent implements OnInit {
   }
 
   setBoardFromChosenFile() {
-    console.log(this.chosenFile);
     this.fileUploadSvc.setBoardFromChosenFile(this.chosenFile);
   }
 

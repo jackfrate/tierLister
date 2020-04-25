@@ -60,15 +60,16 @@ export class BoardComponent implements OnInit {
   //
 
   private setUpBoard() {
-    this.setupTierList();
+    this.tiers = this.boardSettingsSvc.tiers;
+
+    this.setupSubscriptions();
   }
 
-  private setupTierList() {
-    // setup tier map
-    this.tiers = this.boardSettingsSvc.tiers;
+  private setupSubscriptions() {
     this.boardSettingsSvc.tiersUpdate.subscribe(value => {
       this.tiers = value;
     });
+
   }
 
   private setupColorMap() {
