@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
-import { JsonHandlerService } from './json-handler.service';
+import { JsonHandlerService, SavedBoard } from './json-handler.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
@@ -57,7 +57,9 @@ export class BoardSettingsService {
   }
 
   importFromJsonString(json: string) {
-
+    // do json stuff
+    const result: SavedBoard = this.jsonHandleSvc.importFromJson(json);
+    this.setFromSavedBoard(result);
   }
 
   getJsonDownloadLink(): SafeUrl {
@@ -67,6 +69,12 @@ export class BoardSettingsService {
     const urlDownload = window.URL.createObjectURL(blob);
     const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
     return uriDownload;
+  }
+
+  private setFromSavedBoard(saved: SavedBoard) {
+    this.tiers = saved.boardMap;
+    this.name = saved.boardName;
+    this.author = saved.boardAuthor;
   }
 
   private setUpBoard() {
