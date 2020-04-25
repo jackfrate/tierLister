@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -43,14 +44,7 @@ export class BoardComponent implements OnInit {
     this.doDummyData();
   }
 
-  ngOnInit(): void {
-    // TODO: remove test stuff, put this in unit  test
-    const enc = this.exportToJsonLink();
-    console.log(enc);
-    console.log('===============');
-    const translated: SavedBoard = this.jsonHandleSvc.translateEncodedJson(enc);
-    console.log(translated);
-  }
+  ngOnInit(): void { }
 
   getTiers(): TierListItem[][] {
     const ret: TierListItem[][] = [];
@@ -70,11 +64,6 @@ export class BoardComponent implements OnInit {
     }
   }
 
-
-  getDownloadName(): string {
-    return `${this.boardName}.json`
-  }
-
   exportToJson(): string {
     return this.jsonHandleSvc.exportToJSON(
       this.tiers,
@@ -87,20 +76,15 @@ export class BoardComponent implements OnInit {
 
   }
 
-  // TODO: need method to remove object from list (use filter and stuff)
-
-  exportToJsonLink(): string {
-    const jsonValue = this.jsonHandleSvc.exportToEncodedJSON(
-      this.tiers,
-      this.boardName,
-      this.boardAuthor
-    );
-    // TODO: make that the value of the link
-    return jsonValue;
+  getJsonDownloadLink(): SafeUrl {
+    // set the link
+    this.jsonHandleSvc.setBoardJsonDownload(this.tiers, this.boardName, this.boardAuthor);
+    // get the result
+    return this.jsonHandleSvc.downloadJsonLink;
   }
 
-  importFromJsonLink(link: string) {
-
+  getDownloadName(): string {
+    return `${this.boardName}.json`;
   }
 
   //

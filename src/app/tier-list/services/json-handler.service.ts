@@ -44,33 +44,15 @@ export class JsonHandlerService {
     }
   }
 
-  /**
-   * exports to an encoded url,
-   * used for sharing a link of your tierlist
-   */
-  exportToEncodedJSON(
-    map: Map<string, TierListItem[]>,
-    boardName?: string,
-    boardAuthor?: string
-  ): string {
-    const jsonString = this.exportToJSON(map, boardName, boardAuthor)
-    return this.encoder.encodeValue(jsonString);
-  }
-
-  // TODO: make private
-  translateEncodedJson(encoded: string): SavedBoard {
-    // TODO: wrap in try/catch
-    const decodedJson = this.encoder.decodeValue(encoded);
-    return this.importFromJson(decodedJson);
-  }
-
-  downloadBoardJson(
+  setBoardJsonDownload(
     map: Map<string, TierListItem[]>,
     boardName?: string,
     boardAuthor?: string
   ) {
-    const jsonSavedBoard = this.exportToJSON(map, boardName, boardAuthor);
-    const uriDownload = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(jsonSavedBoard));
+    const jsonSavedBoard: string = this.exportToJSON(map, boardName, boardAuthor);
+    const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
     this.downloadJsonLink = uriDownload;
   }
 
