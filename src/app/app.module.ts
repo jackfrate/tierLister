@@ -22,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component';
-import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component'
+import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component';
+import { FileUploadDirective } from './tier-list/directives/file-upload.directive'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.c
     ListItemComponent,
     NewItemDialogComponent,
     BoardSettingsDialogComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    FileUploadDirective
   ],
   imports: [
     // default angualr
@@ -50,7 +52,8 @@ import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.c
   ],
   entryComponents: [
     NewItemDialogComponent,
-    BoardSettingsDialogComponent
+    BoardSettingsDialogComponent,
+    UploadDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

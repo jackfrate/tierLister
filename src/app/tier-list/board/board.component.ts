@@ -9,6 +9,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
+import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 
 
 @Component({
@@ -81,6 +82,10 @@ export class BoardComponent implements OnInit {
   // methods that should kinda be private but aren't because of template
   // feel free to use them, just be careful I guess
 
+  //
+  // dialog stuff
+  //
+
   openNewItemDialog(): void {
     this.dialog.open(NewItemDialogComponent, {
       width: '400px',
@@ -91,9 +96,18 @@ export class BoardComponent implements OnInit {
   openBoardSettingsDialog(): void {
     this.dialog.open(BoardSettingsDialogComponent, {
       width: '250px',
-      // data: { boardName: this.boardName, boardAuthor: this.boardAuthor }
     });
   }
+
+  openUploadDialog(): void {
+    this.dialog.open(UploadDialogComponent, {
+      width: '250px',
+    });
+  }
+
+  //
+  // event stuff
+  //
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
