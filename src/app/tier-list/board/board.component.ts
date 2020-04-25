@@ -100,12 +100,6 @@ export class BoardComponent implements OnInit {
 
   private setUpBoard() {
     this.setupTierList();
-    this.setUpBoardSettings();
-  }
-
-  private setUpBoardSettings() {
-    // this.boardName = this.boardSettingsSvc.name;
-    // this.boardAuthor = this.boardSettingsSvc.author;
   }
 
   private setupTierList() {
