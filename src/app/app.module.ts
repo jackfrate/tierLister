@@ -3,15 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { AppRoutingModule } from './app-routing.module';
 
 // my stuff
 import { AppComponent } from './app.component';
 import { BoardComponent } from './tier-list/board/board.component';
 import { ListItemComponent } from './tier-list/list-item/list-item.component';
 import { FormsModule } from '@angular/forms';
-import { NewItemDialogComponent } from './tier-list/new-item-dialog/new-item-dialog.component';
+import { FileUploadDirective } from './tier-list/directives/file-upload.directive'
 
-import { DragDropModule } from '@angular/cdk/drag-drop';
+// my dialogs
+import { NewItemDialogComponent } from './tier-list/new-item-dialog/new-item-dialog.component';
+import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component';
+import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component';
 
 // material
 import { MatIconModule } from '@angular/material/icon';
@@ -19,11 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AppRoutingModule } from './app-routing.module';
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component';
-import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component';
-import { FileUploadDirective } from './tier-list/directives/file-upload.directive'
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ import { FileUploadDirective } from './tier-list/directives/file-upload.directiv
     MatInputModule,
     MatDialogModule,
     AppRoutingModule,
-    ClipboardModule
+    ClipboardModule,
+    MatRadioModule,
+    MatCardModule
   ],
   entryComponents: [
     NewItemDialogComponent,

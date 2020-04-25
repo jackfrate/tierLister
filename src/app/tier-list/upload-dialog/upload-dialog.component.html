@@ -1,11 +1,27 @@
 <div class="dialog">
-    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-        <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-      </div>
-      <div  class="files-list" *ngFor="let file of files;let i= index">
-          <p> {{ file }} </p>
-          <button class="delete-file" (click)="deleteAttachment(i)">
-            <img src="../../assets/Recycle_Bin_Full.png">
-          </button>
-       </div>
+    <h1 mat-dialog-title>Upload/Manage Boards</h1>
+    <div mat-dialog-content class="dialog-body">
+        <mat-label>Drag/drop in file, or click to choose file</mat-label>
+        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+            <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+        </div>
+
+        <mat-label>Select A Board</mat-label>
+        <div>
+            <mat-radio-group [(ngModel)]="chosenFile" class="file-radio-group">
+                <mat-radio-button *ngFor="let file of files" [value]="file" class="file-radio-button">
+                    {{getFileName(file)}}
+                    <!-- yeet -->
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <!-- submit new thing -->
+        <!-- TODO: need conditional for adding or for changing (we open from diff plaes, import that from the data) -->
+        <button mat-raised-button color="primary">Create</button>
+        <!-- close -->
+        <button mat-button color="accent" [mat-dialog-close]>Close</button>
+    </div>
 </div>

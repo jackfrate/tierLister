@@ -6,10 +6,15 @@ import { BoardSettingsService } from './board-settings.service';
 })
 export class FileUploadService {
 
-  constructor(boardSettingsSvc: BoardSettingsService) { }
+  files: File[];
+  chosenFile: File;
 
-  setBoardFromFile() {
+  constructor(boardSettingsSvc: BoardSettingsService) {
+    this.files = [];
+  }
 
+  setBoardFromChosenFile() {
+    
   }
 
   private convertJsonFileToString() {

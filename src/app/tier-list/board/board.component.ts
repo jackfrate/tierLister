@@ -101,7 +101,8 @@ export class BoardComponent implements OnInit {
 
   openUploadDialog(): void {
     this.dialog.open(UploadDialogComponent, {
-      width: '250px',
+      width: '400px',
+      // height: '600px'
     });
   }
 
