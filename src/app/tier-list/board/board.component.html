@@ -21,11 +21,26 @@
         <!-- the 'logo' -->
         <div class="title-box">
             <h3>TIER LISTER</h3>
-            <!-- inputs for name and author -->
             <!-- add new item -->
             <button id="add-button" mat-raised-button color="primary" (click)="openDialog()">
                 <mat-icon>add</mat-icon>
             </button>
+            <!-- inputs for name and author -->
+
+            <div class="board-name-field">
+                <mat-form-field>
+                    <mat-label>Board Name</mat-label>
+                    <input #boardNameInput matInput [(ngModel)]="boardName" type="text">
+                </mat-form-field>
+            </div>
+
+            <div class="board-author-field">
+                <mat-form-field>
+                    <mat-label></mat-label>
+                    <input #boardAuthorInput matInput [(ngModel)]="boardAuthor" type="text">
+                </mat-form-field>
+            </div>
+
         </div>
         <!-- the buttons -->
         <div class="button-box">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { KeyValue } from '@angular/common';
@@ -8,6 +8,7 @@ import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.compo
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { MatInput } from '@angular/material/input';
 
 
 @Component({
@@ -33,6 +34,9 @@ export class BoardComponent implements OnInit {
   tiers: Map<string, TierListItem[]>;
 
   colorMap: Map<string, string>;
+
+  @ViewChild('boardNameInput') boardNameInput: MatInput;
+  @ViewChild('boardAuthorInput') boardAuthorInput: MatInput;
 
   constructor(
     public dialog: MatDialog,
