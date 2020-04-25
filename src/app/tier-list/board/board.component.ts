@@ -29,11 +29,10 @@ export class BoardComponent implements OnInit {
     private boardSettingsSvc: BoardSettingsService,
   ) {
     this.setupColorMap();
+    this.setUpBoard();
   }
 
   ngOnInit(): void {
-    this.setUpBoard();
-
   }
 
   getTiers(): TierListItem[][] {
@@ -67,6 +66,9 @@ export class BoardComponent implements OnInit {
   private setupTierList() {
     // setup tier map
     this.tiers = this.boardSettingsSvc.tiers;
+    this.boardSettingsSvc.tiersUpdate.subscribe(value => {
+      this.tiers = value;
+    });
   }
 
   private setupColorMap() {
@@ -131,6 +133,10 @@ export class BoardComponent implements OnInit {
   compareFn(a: KeyValue<string, TierListItem[]>, b: KeyValue<string, TierListItem[]>): number {
     // this ensures that we sort in order of insertion
     return 0;
+  }
+
+  ngOnDestroy() {
+    this.boardSettingsSvc.tiersUpdate.unsubscribe()
   }
 
 }

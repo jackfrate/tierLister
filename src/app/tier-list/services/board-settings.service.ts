@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { JsonHandlerService, SavedBoard } from './json-handler.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class BoardSettingsService {
   tiers: Map<string, TierListItem[]>;
 
   // observable for tiers
+  tiersUpdate: Subject<Map<string, TierListItem[]>> = new Subject<Map<string, TierListItem[]>>();
 
   constructor(
     private jsonHandleSvc: JsonHandlerService,
@@ -76,13 +78,17 @@ export class BoardSettingsService {
   private setFromSavedBoard(saved: SavedBoard) {
     console.log('YEET');
 
-    this.tiers = saved.boardMap;
+    this.tiersUpdate.next(saved.boardMap);
     this.name = saved.boardName;
     this.author = saved.boardAuthor;
   }
 
   private setUpBoard() {
     this.setupTierList();
+    // now subscribe
+    this.tiersUpdate.subscribe((value) => {
+      this.tiers = value;
+    });
   }
 
   private setupTierList() {
@@ -110,5 +116,9 @@ export class BoardSettingsService {
         url: "https://www.freepnglogos.com/uploads/mcdonalds-png-logo/mcdonalds-png-logo-simple-m-1.png"
       }
     ]);
+  }
+
+  ngOnDestroy() {
+    this.tiersUpdate.unsubscribe();
   }
 }
