@@ -33,10 +33,11 @@
                 <mat-icon>publish</mat-icon>
             </button>
             <!-- TODO: have tierlist filename be the name of hte tierlist -->
-            <button mat-raised-button color="accent">
-                <mat-icon>get_app</mat-icon>
-                <a [href]="getJsonDownloadLink()" download="board.json">Download Files</a>
-            </button>
+            <a [href]="getJsonDownloadLink()" download="board.json">
+                <button mat-raised-button color="accent">
+                    <mat-icon>get_app</mat-icon>
+                </button>
+            </a>
         </div>
     </div>
 </div>

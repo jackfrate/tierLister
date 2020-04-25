@@ -7,7 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
-import { SafeUrl } from '@angular/platform-browser';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -36,7 +36,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private jsonHandleSvc: JsonHandlerService
+    private jsonHandleSvc: JsonHandlerService,
+    private sanitizer: DomSanitizer
   ) {
     this.setUpBoard();
     this.setupColorMap();
@@ -77,10 +78,12 @@ export class BoardComponent implements OnInit {
   }
 
   getJsonDownloadLink(): SafeUrl {
-    // set the link
-    this.jsonHandleSvc.setBoardJsonDownload(this.tiers, this.boardName, this.boardAuthor);
-    // get the result
-    return this.jsonHandleSvc.downloadJsonLink;
+    const jsonSavedBoard: string = this
+      .jsonHandleSvc.exportToJSON(this.tiers, this.boardName, this.boardAuthor);
+    const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
+    return uriDownload;
   }
 
   getDownloadName(): string {

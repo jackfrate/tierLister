@@ -14,7 +14,7 @@ export class JsonHandlerService {
   // used to download the json
   downloadJsonLink: SafeUrl;
 
-  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+  constructor(private route: ActivatedRoute) {
     this.encoder = new HttpUrlEncodingCodec();
   }
 
@@ -44,17 +44,7 @@ export class JsonHandlerService {
     }
   }
 
-  setBoardJsonDownload(
-    map: Map<string, TierListItem[]>,
-    boardName?: string,
-    boardAuthor?: string
-  ) {
-    const jsonSavedBoard: string = this.exportToJSON(map, boardName, boardAuthor);
-    const blob = new Blob([jsonSavedBoard], { type: 'text/json' });
-    const urlDownload = window.URL.createObjectURL(blob);
-    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
-    this.downloadJsonLink = uriDownload;
-  }
+
 
   private objToStrMap(obj: Object) {
     let strMap = new Map();
