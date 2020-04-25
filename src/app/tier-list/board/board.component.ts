@@ -5,7 +5,6 @@ import { KeyValue } from '@angular/common';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
-import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { JsonHandlerService, SavedBoard } from '../services/json-handler.service';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';

@@ -18,7 +18,6 @@ export class BoardSettingsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<BoardSettingsDialogComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: BoardSettings,
     private boardSettingsSvc: BoardSettingsService
   ) {
     this.name = boardSettingsSvc.name;
