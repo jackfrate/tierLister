@@ -33,7 +33,7 @@ export class BoardSettingsService {
   ) {
     this.setUpBoard();
     // test stuff
-    this.doDummyData();
+    // this.doDummyData();
   }
 
   getTiers(): TierListItem[][] {
