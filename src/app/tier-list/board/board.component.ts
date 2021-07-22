@@ -116,6 +116,7 @@ export class BoardComponent implements OnInit {
   //
 
   drop(event: CdkDragDrop<string[]>) {
+    // if we drag it into the same tier, rearrange the order
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -137,7 +138,7 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.boardSettingsSvc.tiersUpdate.unsubscribe()
+    this.boardSettingsSvc.tiersUpdate.unsubscribe();
   }
 
 }
