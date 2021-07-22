@@ -2,92 +2,100 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Shadows+Into+Light&display=swap";
 
 .board {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 
+  display: flex;
+  flex-direction: column;
+
+  background-color: #1a1a1a;
+  min-height: 100%;
+  min-width: 100%;
+
+  .tiers {
+    flex: 1;
     display: flex;
     flex-direction: column;
 
-    background-color: #1a1a1a;
-    min-height: 100%;
-    min-width: 100%;
+    border-top: 5px solid black;
+    .tier {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
 
-    .tiers {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+      border-bottom: 5px solid black;
 
-        border-top: 5px solid black;
-        .tier {
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-
-            border-bottom: 5px solid black;
-
-            .tier-item-container {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .tier-label {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                min-height: 100%;
-                min-width: 100px;
-
-                border-right: 5px solid black;
-            }
-
-            .tier-item {
-                // margins controlled in here,
-                // all other css done in the component
-                margin-left: 10px;
-                min-height: 80px;
-            }
-        }
-    }
-
-    .bottom-bar {
+      .tier-item-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: 5px;
-        .title-box {
-            // TODO: do like fonts and stuff
-            display: flex;
-            flex-flow: row;
-            justify-content: space-between;
+        flex-wrap: wrap;
+      }
 
-            font-size: 110%;
-            color: whitesmoke;
-            font-family: "Shadows Into Light", cursive;
+      .tier-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-            margin-top: 5px;
-            margin-bottom: 5px;
+        min-height: 100%;
+        min-width: 100px;
 
-            h3 {
-                margin-top: 0px;
-                margin-bottom: 0px;
-                margin-right: 20px;
-                margin-left: 10px;
-            }
-        }
+        border-right: 5px solid black;
+      }
 
-        .button-box {
-            margin-right: 10px;
-            button {
-                margin: 5px;
-            }
-
-            // button themes and stuff
-            justify-content: space-evenly;
-        }
-
-        .button-spacing {
-            margin-right: 10px;
-        }
+      .tier-item {
+        // margins controlled in here,
+        // all other css done in the component
+        margin-left: 10px;
+        min-height: 80px;
+      }
     }
+    .trashcan {
+      display: flex;
+      justify-self: flex-end;
+      margin-left: auto;
+      width: 5%;
+      outline: #1a1a1a;
+      outline-style: dotted;
+    }
+  }
+
+  .bottom-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    .title-box {
+      // TODO: do like fonts and stuff
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+
+      font-size: 110%;
+      color: whitesmoke;
+      font-family: "Shadows Into Light", cursive;
+
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      h3 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 20px;
+        margin-left: 10px;
+      }
+    }
+
+    .button-box {
+      margin-right: 10px;
+      button {
+        margin: 5px;
+      }
+
+      // button themes and stuff
+      justify-content: space-evenly;
+    }
+
+    .button-spacing {
+      margin-right: 10px;
+    }
+  }
 }

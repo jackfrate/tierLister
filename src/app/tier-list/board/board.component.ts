@@ -32,7 +32,7 @@ export class BoardComponent implements OnInit {
   public eTier: TierListItem[]= [];
   public fTier: TierListItem[]= [];
   public noTier: TierListItem[] = [];
-  public trash: TierListItem[] = [];
+  public trash: string[] = [];
 
   constructor(public dialog: MatDialog) {
     this.setupColorMap();
@@ -51,6 +51,20 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  deleteItem(event: CdkDragDrop<string[]>) {
+    // if we drag it into the same tier, rearrange the order
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+
+    this.trash = [];
   }
 
   // methods that should kinda be private but aren't because of template

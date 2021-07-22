@@ -124,10 +124,14 @@
                     <!-- the tier items -->
                     <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('None')"></app-list-item>
                 </div>
-                <div class="trashcan">
-
+                
+            </div>
+            <div class="trashcan" cdkDropList [cdkDropListData]="trash" (cdkDropListEntered)="deleteItem($event)">
+                <div class="trash">
+                    <p>Trash</p>
                 </div>
             </div>
+            
         </div>
         <div class="bottom-bar">
             <!-- the 'logo' -->
@@ -144,6 +148,7 @@
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
+                
             </div>
             <!-- the buttons -->
             <!-- TODO: have tierlist filename be the name of hte tierlist -->
