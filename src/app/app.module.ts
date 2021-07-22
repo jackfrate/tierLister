@@ -27,7 +27,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import { TrashCanComponent } from './tier-list/trash-can/trash-can.component';
 
 
 @NgModule({
@@ -39,7 +38,6 @@ import { TrashCanComponent } from './tier-list/trash-can/trash-can.component';
     BoardSettingsDialogComponent,
     UploadDialogComponent,
     FileUploadDirective,
-    TrashCanComponent
   ],
   imports: [
     // default angualr

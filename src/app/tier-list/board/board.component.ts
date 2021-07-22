@@ -18,70 +18,39 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  tiers: Map<string, TierListItem[]>;
-  colorMap: Map<string, string>;
-
   @ViewChild('boardNameInput') boardNameInput: MatInput;
   @ViewChild('boardAuthorInput') boardAuthorInput: MatInput;
 
-  constructor(
-    public dialog: MatDialog,
-    private boardSettingsSvc: BoardSettingsService,
-  ) {
+  
+  colorMap: Map<string, string>;
+
+  public sTier: TierListItem[]= [];
+  public aTier: TierListItem[]= [];
+  public bTier: TierListItem[]= [];
+  public cTier: TierListItem[]= [];
+  public dTier: TierListItem[]= [];
+  public eTier: TierListItem[]= [];
+  public fTier: TierListItem[]= [];
+  public noTier: TierListItem[] = [];
+  public trash: TierListItem[] = [];
+
+  constructor(public dialog: MatDialog) {
     this.setupColorMap();
-    this.setUpBoard();
-  }
+   }
 
   ngOnInit(): void {
   }
 
-  getTiers(): TierListItem[][] {
-    return this.boardSettingsSvc.getTiers();
-  }
-
-  addTierItem(tierItem: TierListItem) {
-    this.boardSettingsSvc.addTierItem(tierItem);
-  }
-
-  exportToJson(): string {
-    return this.boardSettingsSvc.exportToJson();
-  }
-
-  getJsonDownloadLink(): SafeUrl {
-    return this.boardSettingsSvc.getJsonDownloadLink();
-  }
-
-  getDownloadName(): string {
-    return `${this.boardSettingsSvc.name}.json`;
-  }
-
-  //
-  // private and privateish stuff
-  //
-
-  private setUpBoard() {
-    this.tiers = this.boardSettingsSvc.tiers;
-
-    this.setupSubscriptions();
-  }
-
-  private setupSubscriptions() {
-    this.boardSettingsSvc.tiersUpdate.subscribe(value => {
-      this.tiers = value;
-    });
-
-  }
-
-  private setupColorMap() {
-    this.colorMap = new Map();
-    this.colorMap.set(BoardSettingsService.S, "#ff7f7f");
-    this.colorMap.set(BoardSettingsService.A, "#ffbf7f");
-    this.colorMap.set(BoardSettingsService.B, "#ffff7f");
-    this.colorMap.set(BoardSettingsService.C, "#7fff7f");
-    this.colorMap.set(BoardSettingsService.D, "#7fbfff");
-    this.colorMap.set(BoardSettingsService.E, "#7f7fff");
-    this.colorMap.set(BoardSettingsService.F, "#ff7fff");
-    this.colorMap.set(BoardSettingsService.NOT_SET, "#F8F8FF");
+  drop(event: CdkDragDrop<string[]>) {
+    // if we drag it into the same tier, rearrange the order
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
   // methods that should kinda be private but aren't because of template
@@ -94,7 +63,7 @@ export class BoardComponent implements OnInit {
   openNewItemDialog(): void {
     this.dialog.open(NewItemDialogComponent, {
       width: '400px',
-      data: this.tiers.get(BoardSettingsService.NOT_SET)
+      data: this.noTier
     });
   }
 
@@ -111,34 +80,26 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  //
-  // event stuff
-  //
-
-  drop(event: CdkDragDrop<string[]>) {
-    // if we drag it into the same tier, rearrange the order
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+  public addTierItem(tierItem: TierListItem) {
+    // do nothing if we have nothing
+    if (!tierItem.name && !tierItem.url) {
+      return;
+    }
+    else {
+      this.noTier.push(tierItem);
     }
   }
 
-  /**
-   * orders the tiers from the map properly
-   * @param a
-   * @param b
-   */
-  compareFn(a: KeyValue<string, TierListItem[]>, b: KeyValue<string, TierListItem[]>): number {
-    // this ensures that we sort in order of insertion
-    return 0;
-  }
-
-  ngOnDestroy() {
-    this.boardSettingsSvc.tiersUpdate.unsubscribe();
+  private setupColorMap() {
+    this.colorMap = new Map();
+    this.colorMap.set(BoardSettingsService.S, "#ff7f7f");
+    this.colorMap.set(BoardSettingsService.A, "#ffbf7f");
+    this.colorMap.set(BoardSettingsService.B, "#ffff7f");
+    this.colorMap.set(BoardSettingsService.C, "#7fff7f");
+    this.colorMap.set(BoardSettingsService.D, "#7fbfff");
+    this.colorMap.set(BoardSettingsService.E, "#7f7fff");
+    this.colorMap.set(BoardSettingsService.F, "#ff7fff");
+    this.colorMap.set(BoardSettingsService.NOT_SET, "#F8F8FF");
   }
 
 }

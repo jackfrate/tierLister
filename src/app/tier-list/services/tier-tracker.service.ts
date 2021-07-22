@@ -27,10 +27,6 @@ export class TierTrackerService {
     this.tierMap.set(item, this.baseTier);
   }
 
-  removeItem(item: TierListItem) {
-    this.tierMap.keys.filter()
-  }
-
   addTier(tier: Tier): void {
     this.tiers.push(tier);
   }

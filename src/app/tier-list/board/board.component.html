@@ -1,52 +1,161 @@
 <div class="board">
     <div cdkDropListGroup class="tiers">
         <!-- for each tier -->
-        <div class="tier" cdkDropList [cdkDropListData]="entry.value" *ngFor="let entry of tiers | keyvalue : compareFn" (cdkDropListDropped)="drop($event)">
+        <div [ngClass]="['tier','S-tier']" cdkDropList [cdkDropListData]="sTier" (cdkDropListDropped)="drop($event)">
             <!-- labels for tiers -->
-            <div class="tier-label" [style.background-color]="colorMap.get(entry.key)">
+            <div class="tier-label" [style.background-color]="colorMap.get('S')">
                 <h1>
-                    {{entry.key}}
+                    S
                 </h1>
             </div>
             <div class="tier-item-container">
                 <!-- containers for all items -->
-                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of entry.value">
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of sTier">
                     <!-- the tier items -->
-                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get(entry.key)"></app-list-item>
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('S')"></app-list-item>
+                </div>
+
+            </div>
+        </div>
+        <div [ngClass]="['tier','A-tier']" cdkDropList [cdkDropListData]="aTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('A')">
+                <h1>
+                    A
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of aTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('A')"></app-list-item>
+                </div>
+
+            </div>
+
+        </div>
+        <div [ngClass]="['tier','B-tier']" cdkDropList [cdkDropListData]="bTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('B')">
+                <h1>
+                    B
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of bTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('B')"></app-list-item>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="['tier','C-tier']" cdkDropList [cdkDropListData]="cTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('C')">
+                <h1>
+                    C
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of cTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('C')"></app-list-item>
+                </div>
+
+            </div>
+        </div>
+        <div [ngClass]="['tier','D-tier']" cdkDropList [cdkDropListData]="dTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('D')">
+                <h1>
+                    D
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of dTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('D')"></app-list-item>
+                </div>
+
+            </div>
+        </div>
+        <div [ngClass]="['tier','E-tier']" cdkDropList [cdkDropListData]="eTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('E')">
+                <h1>
+                    E
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of eTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('E')"></app-list-item>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="['tier','F-tier']" cdkDropList [cdkDropListData]="fTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('F')">
+                <h1>
+                    F
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of fTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('F')"></app-list-item>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="['tier','NO-tier']" cdkDropList [cdkDropListData]="noTier" (cdkDropListDropped)="drop($event)">
+            <!-- labels for tiers -->
+            <div class="tier-label" [style.background-color]="colorMap.get('None')">
+                <h1>
+                    S
+                </h1>
+            </div>
+            <div class="tier-item-container">
+                <!-- containers for all items -->
+                <div class="tier-item" cdkDrag [cdkDragData]="item" *ngFor="let item of noTier">
+                    <!-- the tier items -->
+                    <app-list-item [listItem]="item" [backgroundColor]="colorMap.get('None')"></app-list-item>
                 </div>
                 <div class="trashcan">
-                    <app-trash-can></app-trash-can>
+
                 </div>
             </div>
         </div>
-    </div>
-    <div class="bottom-bar">
-        <!-- the 'logo' -->
-        <div class="title-box">
-            <h3>TIER LISTER</h3>
-            <!-- add new item -->
-            <div class="button-spacing">
-                <button id="settings-button" mat-raised-button color="primary" (click)="openBoardSettingsDialog()">
-                    <mat-icon>edit</mat-icon>
-                </button>
+        <div class="bottom-bar">
+            <!-- the 'logo' -->
+            <div class="title-box">
+                <h3>TIER LISTER</h3>
+                <!-- add new item -->
+                <div class="button-spacing">
+                    <button id="settings-button" mat-raised-button color="primary" (click)="openBoardSettingsDialog()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+                <div class="button-spacing">
+                    <button id="add-button" mat-raised-button color="primary" (click)="openNewItemDialog()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
             </div>
-            <div class="button-spacing">
-                <button id="add-button" mat-raised-button color="primary" (click)="openNewItemDialog()">
-            	    <mat-icon>add</mat-icon>
-            	</button>
-            </div>
-        </div>
-        <!-- the buttons -->
-        <div class="button-box">
+            <!-- the buttons -->
+            <!-- TODO: have tierlist filename be the name of hte tierlist -->
+            <!-- <div class="button-box">
             <button mat-raised-button color="accent" (click)="openUploadDialog()">
                 <mat-icon>publish</mat-icon>
             </button>
-            <!-- TODO: have tierlist filename be the name of hte tierlist -->
             <a [href]="getJsonDownloadLink()" download={{getDownloadName()}}>
                 <button mat-raised-button color="accent">
                     <mat-icon>get_app</mat-icon>
                 </button>
             </a>
+        </div> -->
         </div>
     </div>
-</div>

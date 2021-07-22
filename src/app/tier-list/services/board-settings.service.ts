@@ -50,6 +50,12 @@ export class BoardSettingsService {
     }
   }
 
+  deleteTierItem(tierItem: TierListItem) {
+    for (const list in this.tiers.values()) {
+      
+    }
+  }
+
   exportToJson(): string {
     return this.jsonHandleSvc.exportToJSON(
       this.tiers,
