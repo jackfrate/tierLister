@@ -8,12 +8,6 @@ import { TierListItem } from '../plain-objects/tier-list-item';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input() listItem: TierListItem;
-  @Input() backgroundColor: string;
-
-  url: string;
-  name: string;
-
   // style stuff
   static readonly itemBackgroundColors: string[] = [
     // "#4a6572",s
@@ -22,14 +16,19 @@ export class ListItemComponent implements OnInit {
     // "#356859"
   ];
 
-
   constructor() {
 
   }
 
+
+  @Input() listItem: TierListItem;
+  @Input() backgroundColor: string;
+
+  url: string;
+  name: string;
+
   ngOnInit(): void {
     this.determineState();
-    // this.backgroundColor = this.getRandomBackgroundColor();
   }
 
   getRandomBackgroundColor(): string {

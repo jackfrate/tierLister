@@ -24,16 +24,12 @@ export class BoardSettingsService {
 
   // observables
   tiersUpdate: Subject<Map<string, TierListItem[]>> = new Subject<Map<string, TierListItem[]>>();
-  // nameUpdate: Subject<string> = new Subject<string>();
-  // authorUpdate: Subject<string> = new Subject<string>();
 
   constructor(
     private jsonHandleSvc: JsonHandlerService,
     private sanitizer: DomSanitizer,
   ) {
     this.setUpBoard();
-    // test stuff
-    // this.doDummyData();
   }
 
   getTiers(): TierListItem[][] {
@@ -89,12 +85,6 @@ export class BoardSettingsService {
     this.tiersUpdate.subscribe((value: Map<string, TierListItem[]>) => {
       this.tiers = value;
     });
-    // this.nameUpdate.subscribe((value: string) => {
-    //   this.name = value;
-    // });
-    // this.authorUpdate.subscribe((value: string) => {
-    //   this.author = value;
-    // });
   }
 
   private setupTierList() {
@@ -108,20 +98,6 @@ export class BoardSettingsService {
     this.tiers.set(BoardSettingsService.E, []);
     this.tiers.set(BoardSettingsService.F, []);
     this.tiers.set(BoardSettingsService.NOT_SET, []);
-  }
-
-  /**
-   * just test for a url item and an text item
-   */
-  private doDummyData() {
-    this.tiers.set(BoardSettingsService.NOT_SET, [
-      {
-        name: "jack"
-      },
-      {
-        url: "https://www.freepnglogos.com/uploads/mcdonalds-png-logo/mcdonalds-png-logo-simple-m-1.png"
-      }
-    ]);
   }
 
   ngOnDestroy() {

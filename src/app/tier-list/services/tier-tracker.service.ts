@@ -27,6 +27,10 @@ export class TierTrackerService {
     this.tierMap.set(item, this.baseTier);
   }
 
+  removeItem(tierListName: string) {
+    
+  }
+
   addTier(tier: Tier): void {
     this.tiers.push(tier);
   }
