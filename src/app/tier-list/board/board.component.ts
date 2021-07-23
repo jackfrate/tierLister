@@ -5,7 +5,7 @@ import { KeyValue } from '@angular/common';
 
 import { MatDialog } from '@angular/material/dialog';
 import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.component';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
@@ -35,11 +35,16 @@ export class BoardComponent implements OnInit {
 
   trash = [];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private boardSettingsSvc: BoardSettingsService, private sanitizer: DomSanitizer) {
     this.setupColorMap();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
+  }
+
+  ngOnDestroy() {
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -67,12 +72,34 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  deleteItem() {
-
+  exportToJson(): string {
+    return JSON.stringify(this.createBoardObject());
   }
 
-  // methods that should kinda be private but aren't because of template
-  // feel free to use them, just be careful I guess
+  getDownloadName(): string {
+    return `${this.boardSettingsSvc.name}.json`;
+  }
+
+  getJsonDownloadLink(): SafeUrl {
+    const jsonString = this.exportToJson();
+    const blob = new Blob([jsonString], { type: 'text/json' });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const uriDownload: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(urlDownload);
+    return uriDownload;
+  }
+
+  createBoardObject(): JsonBoard {
+    return {
+      sTier: this.sTier,
+      aTier: this.aTier,
+      bTier: this.bTier,
+      cTier: this.cTier,
+      dTier: this.dTier,
+      eTier: this.eTier,
+      fTier: this.fTier,
+      noTier: this.noTier,
+    }
+  }
 
   //
   // dialog stuff
@@ -120,4 +147,15 @@ export class BoardComponent implements OnInit {
     this.colorMap.set(BoardSettingsService.NOT_SET, "#F8F8FF");
   }
 
+}
+
+export interface JsonBoard {
+  sTier: TierListItem[];
+  aTier: TierListItem[];
+  bTier: TierListItem[];
+  cTier: TierListItem[];
+  dTier: TierListItem[];
+  eTier: TierListItem[];
+  fTier: TierListItem[];
+  noTier: TierListItem[];
 }

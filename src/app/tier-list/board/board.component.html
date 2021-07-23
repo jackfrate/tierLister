@@ -146,18 +146,23 @@
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
+            <div class="button-spacing">
+                <button id="add-button" mat-raised-button color="secondary">
+                    Drag Down to Delete
+                </button>
+            </div>
         </div>
         <!-- the buttons -->
         <!-- TODO: have tierlist filename be the name of hte tierlist -->
-        <!-- <div class="button-box">
-        <button mat-raised-button color="accent" (click)="openUploadDialog()">
-            <mat-icon>publish</mat-icon>
-        </button>
-        <a [href]="getJsonDownloadLink()" download={{getDownloadName()}}>
-            <button mat-raised-button color="accent">
-                <mat-icon>get_app</mat-icon>
+        <div class="button-box">
+            <button mat-raised-button color="accent" (click)="openUploadDialog()">
+                <mat-icon>publish</mat-icon>
             </button>
-        </a>
-    </div> -->
+            <a [href]="getJsonDownloadLink()" download={{getDownloadName()}}>
+                <button mat-raised-button color="accent">
+                    <mat-icon>get_app</mat-icon>
+                </button>
+            </a>
+        </div>
     </div>
 </div>
