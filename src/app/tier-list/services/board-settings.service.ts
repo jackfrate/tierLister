@@ -24,10 +24,8 @@ export class BoardSettingsService {
   name: string = 'yeet';
   author: string = 'jack';
 
-  // TODO: make an observable of json uploads
-  // subscribe in board component, whenever a new one is pushed, revieve it, 
-  // then clear and re-populate the tiers
   constructor() { 
+    this.uploadedBoardChange = new Subject();
     this.uploadedBoardChange.subscribe((value) => {
       this.uploadedBoard = value;
     });
