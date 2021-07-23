@@ -48,15 +48,15 @@
         min-height: 80px;
       }
     }
-    .trashcan {
-      display: flex;
-      justify-self: flex-end;
-      margin-left: auto;
-      width: 5%;
-      outline: #1a1a1a;
-      outline-style: dotted;
-    }
-  }
+}
+.trashcan {
+  display: flex;
+  justify-self: flex-end;
+//   margin-left: auto;
+  width: 5%;
+  outline: #1a1a1a;
+  outline-style: dotted;
+}
 
   .bottom-bar {
     display: flex;

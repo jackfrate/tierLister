@@ -21,50 +21,54 @@ export class BoardComponent implements OnInit {
   @ViewChild('boardNameInput') boardNameInput: MatInput;
   @ViewChild('boardAuthorInput') boardAuthorInput: MatInput;
 
-  
+
   colorMap: Map<string, string>;
 
-  public sTier: TierListItem[]= [];
-  public aTier: TierListItem[]= [];
-  public bTier: TierListItem[]= [];
-  public cTier: TierListItem[]= [];
-  public dTier: TierListItem[]= [];
-  public eTier: TierListItem[]= [];
-  public fTier: TierListItem[]= [];
+  public sTier: TierListItem[] = [];
+  public aTier: TierListItem[] = [];
+  public bTier: TierListItem[] = [];
+  public cTier: TierListItem[] = [];
+  public dTier: TierListItem[] = [];
+  public eTier: TierListItem[] = [];
+  public fTier: TierListItem[] = [];
   public noTier: TierListItem[] = [];
-  public trash: string[] = [];
+
+  trash = [];
 
   constructor(public dialog: MatDialog) {
     this.setupColorMap();
-   }
+  }
 
   ngOnInit(): void {
   }
 
   drop(event: CdkDragDrop<string[]>) {
     // if we drag it into the same tier, rearrange the order
+    if (event.isPointerOverContainer === false) {
+      transferArrayItem(
+        event.previousContainer.data,
+        this.trash,
+        event.previousIndex,
+        event.currentIndex
+      );
+      // gotta empty the trash
+      this.trash = [];
+
+    }
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data,
+      transferArrayItem(
+        event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex);
+        event.currentIndex
+      );
     }
   }
 
-  deleteItem(event: CdkDragDrop<string[]>) {
-    // if we drag it into the same tier, rearrange the order
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
+  deleteItem() {
 
-    this.trash = [];
   }
 
   // methods that should kinda be private but aren't because of template
