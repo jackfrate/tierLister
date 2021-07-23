@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { JsonBoard } from '../board/board.component';
 import { JsonHandlerService, SavedBoard } from './json-handler.service';
 
@@ -17,19 +18,24 @@ export class BoardSettingsService {
   static readonly F = 'F';
   static readonly NOT_SET = 'None';
 
+  uploadedBoard: JsonBoard;
+  uploadedBoardChange: Subject<JsonBoard>;
+
   name: string = 'yeet';
   author: string = 'jack';
 
   // TODO: make an observable of json uploads
   // subscribe in board component, whenever a new one is pushed, revieve it, 
   // then clear and re-populate the tiers
-  constructor() { }
+  constructor() { 
+    this.uploadedBoardChange.subscribe((value) => {
+      this.uploadedBoard = value;
+    });
+  }
 
   importFromJsonString(json: string) {
-    // do json stuff
+    const boardObject: JsonBoard = JSON.parse(json);
+    this.uploadedBoardChange.next(boardObject);
   }
 
-  private setFromSavedBoard(saved: JsonBoard) {
-    
-  }
 }
