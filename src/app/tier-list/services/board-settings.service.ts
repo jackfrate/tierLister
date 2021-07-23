@@ -25,15 +25,11 @@ export class BoardSettingsService {
   // then clear and re-populate the tiers
   constructor() { }
 
-
   importFromJsonString(json: string) {
     // do json stuff
-
   }
 
-
-
   private setFromSavedBoard(saved: JsonBoard) {
-
+    
   }
 }
