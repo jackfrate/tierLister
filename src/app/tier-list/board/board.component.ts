@@ -40,11 +40,24 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.boardSettingsSvc.uploadedBoardChange.subscribe(value => {
+      this.updateBoardFromObject(value);
+    })
   }
 
   ngOnDestroy() {
+    this.boardSettingsSvc.uploadedBoardChange.unsubscribe();
+  }
 
+  updateBoardFromObject(jsonBoard: JsonBoard) {
+    this.sTier = jsonBoard.sTier;
+    this.aTier = jsonBoard.aTier;
+    this.bTier = jsonBoard.bTier;
+    this.cTier = jsonBoard.cTier;
+    this.dTier = jsonBoard.dTier;
+    this.eTier = jsonBoard.eTier;
+    this.fTier = jsonBoard.fTier;
+    this.noTier = jsonBoard.noTier;
   }
 
   drop(event: CdkDragDrop<string[]>) {
