@@ -24,15 +24,14 @@ export class BoardComponent implements OnInit {
 
   colorMap: Map<string, string>;
 
-  public sTier: TierListItem[] = [];
-  public aTier: TierListItem[] = [];
-  public bTier: TierListItem[] = [];
-  public cTier: TierListItem[] = [];
-  public dTier: TierListItem[] = [];
-  public eTier: TierListItem[] = [];
-  public fTier: TierListItem[] = [];
-  public noTier: TierListItem[] = [];
-
+  sTier: TierListItem[] = [];
+  aTier: TierListItem[] = [];
+  bTier: TierListItem[] = [];
+  cTier: TierListItem[] = [];
+  dTier: TierListItem[] = [];
+  eTier: TierListItem[] = [];
+  fTier: TierListItem[] = [];
+  noTier: TierListItem[] = [];
   trash = [];
 
   constructor(public dialog: MatDialog, private boardSettingsSvc: BoardSettingsService, private sanitizer: DomSanitizer) {
