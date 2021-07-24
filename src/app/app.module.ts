@@ -29,6 +29,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
+import { MatListModule } from '@angular/material/list';
+
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
     AppRoutingModule,
     ClipboardModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule
   ],
   entryComponents: [
     NewItemDialogComponent,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DbService } from 'src/app/services/db.service';
+import { JsonBoardIdentifier } from '../plain-objects/json-board-identifier';
 
 @Component({
   selector: 'app-db-dialog',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DbDialogComponent implements OnInit {
 
-  constructor() { }
+  boardList$: Observable<JsonBoardIdentifier[]>;
+
+  constructor(private dbSvc: DbService) {
+    this.boardList$ = this.dbSvc.boards$;
+  }
 
   ngOnInit(): void {
   }

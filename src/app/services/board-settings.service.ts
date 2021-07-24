@@ -35,4 +35,8 @@ export class BoardSettingsService {
     this.uploadedBoardChange.next(boardObject);
   }
 
+  importFromTierList(tierList: JsonBoard) {
+    this.uploadedBoardChange.next(tierList);
+  }
+
 }
