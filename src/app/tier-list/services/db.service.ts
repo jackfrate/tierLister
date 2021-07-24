@@ -7,7 +7,7 @@ import { JsonBoardIdentifier } from '../plain-objects/json-board-identifier';
 @Injectable({
   providedIn: 'root'
 })
-export class DbServiceService {
+export class DbService {
 
   boards$: Observable<JsonBoardIdentifier[]>;
 

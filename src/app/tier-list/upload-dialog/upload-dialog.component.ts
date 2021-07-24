@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DbService } from '../services/db.service';
 import { FileUploadService } from '../services/file-upload.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class UploadDialogComponent implements OnInit {
   files: File[];
   chosenFile: File;
 
-  constructor(private fileUploadSvc: FileUploadService) {
+  constructor(private fileUploadSvc: FileUploadService, dbService: DbService) {
     this.files = this.fileUploadSvc.files;
   }
 
