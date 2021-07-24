@@ -31,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { WithLoadingPipe } from './with-loading.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -63,13 +64,15 @@ import { WithLoadingPipe } from './with-loading.pipe';
     ClipboardModule,
     MatRadioModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule,
   ],
   entryComponents: [
     NewItemDialogComponent,
     BoardSettingsDialogComponent,
     UploadDialogComponent,
     InfoDialogComponent,
+    DbDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

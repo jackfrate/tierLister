@@ -11,6 +11,7 @@ import { BoardSettingsService } from '../../services/board-settings.service';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { JsonBoard } from '../plain-objects/json-board';
+import { DbDialogComponent } from '../db-dialog/db-dialog.component';
 
 
 @Component({
@@ -156,6 +157,13 @@ export class BoardComponent implements OnInit, OnDestroy {
         width: '400px'
       }
     );
+  }
+
+  openDbDialog(): void {
+    this.dialog.open(DbDialogComponent,
+      {
+        width: '400px'
+      });
   }
 
   public addTierItem(tierItem: TierListItem) {

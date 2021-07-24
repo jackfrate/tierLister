@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: "xxxx.appspot.com",
     messagingSenderId: "xxxxx"
   },
-  apiUrl: 'localhost:5000/'
+  apiUrl: 'http://127.0.0.1:5000'
 };
 
 /*

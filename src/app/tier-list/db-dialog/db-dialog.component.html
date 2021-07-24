@@ -1,10 +1,15 @@
 <div class="dialog">
     <h1 mat-dialog-title>Public Tier Lists</h1>
+    <!-- *ngIf="boardList$ | withLoading | async as obs" -->
     <div mat-dialog-content class="db-list">
-        <mat-list role="list">
+        <mat-selection-list role="list">
             <mat-list-option *ngFor="let item of boardList$ | async">
                 {{item.name}}
             </mat-list-option>
-        </mat-list>
+        </mat-selection-list>
+    </div>
+    <div mat-dialog-actions>
+        <!-- close -->
+        <button mat-button color="secondary" [mat-dialog-close]>Close</button>
     </div>
 </div>

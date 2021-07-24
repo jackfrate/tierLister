@@ -2,5 +2,5 @@
 # TODO:
 - break into modules 
 - upgrade angular
-- loading animations
+- loading animations- break the button bar into its own component
 
