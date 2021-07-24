@@ -61,10 +61,8 @@
   .bottom-bar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-bottom: 5px;
     .title-box {
-      // TODO: do like fonts and stuff
       display: flex;
       flex-flow: row;
       justify-content: space-between;
@@ -83,7 +81,7 @@
         margin-left: 10px;
       }
     }
-    
+
     .button-box {
       flex-wrap: wrap;
       margin-right: 10px;
