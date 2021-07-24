@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { JsonBoard } from "../plain-objects/JsonBoard";
+import { JsonBoard } from "../plain-objects/json-board";
 
 
 @Injectable({
