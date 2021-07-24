@@ -30,6 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
 import { MatListModule } from '@angular/material/list';
+import { WithLoadingPipe } from './with-loading.pipe';
 
 
 
@@ -44,6 +45,7 @@ import { MatListModule } from '@angular/material/list';
     FileUploadDirective,
     InfoDialogComponent,
     DbDialogComponent,
+    WithLoadingPipe,
   ],
   imports: [
     // default angualr
