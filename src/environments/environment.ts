@@ -11,7 +11,8 @@ export const environment = {
     projectId: "xxxx",
     storageBucket: "xxxx.appspot.com",
     messagingSenderId: "xxxxx"
-  }
+  },
+  base: 'localhost:5000/'
 };
 
 /*

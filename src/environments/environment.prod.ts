@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  base: 'https://tier-lister-backend.herokuapp.com/',
 };
