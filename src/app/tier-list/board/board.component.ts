@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TierListItem } from '../plain-objects/tier-list-item';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
@@ -18,7 +18,7 @@ import { JsonBoard } from '../plain-objects/json-board';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, OnDestroy {
   @ViewChild('boardNameInput') boardNameInput: MatInput;
   @ViewChild('boardAuthorInput') boardAuthorInput: MatInput;
 
@@ -35,30 +35,27 @@ export class BoardComponent implements OnInit {
   noTier: TierListItem[] = [];
   trash = [];
 
-  constructor(public dialog: MatDialog, private boardSettingsSvc: BoardSettingsService, private sanitizer: DomSanitizer) {
+  constructor(
+    public dialog: MatDialog,
+    private boardSettingsSvc: BoardSettingsService,
+    private sanitizer: DomSanitizer
+  ) {
     this.setupColorMap();
   }
 
   ngOnInit() {
     this.boardSettingsSvc.uploadedBoardChange.subscribe(value => {
       this.updateBoardFromObject(value);
-    })
+    });
   }
 
   ngOnDestroy() {
     this.boardSettingsSvc.uploadedBoardChange.unsubscribe();
   }
 
-  updateBoardFromObject(jsonBoard: JsonBoard) {
-    this.sTier = jsonBoard.sTier;
-    this.aTier = jsonBoard.aTier;
-    this.bTier = jsonBoard.bTier;
-    this.cTier = jsonBoard.cTier;
-    this.dTier = jsonBoard.dTier;
-    this.eTier = jsonBoard.eTier;
-    this.fTier = jsonBoard.fTier;
-    this.noTier = jsonBoard.noTier;
-  }
+  //
+  // Event stuff
+  //
 
   drop(event: CdkDragDrop<string[]>) {
     // if we drag it into the same tier, rearrange the order
@@ -72,7 +69,6 @@ export class BoardComponent implements OnInit {
       // gotta empty the trash
       this.trash = [];
     }
-
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -83,6 +79,21 @@ export class BoardComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  //
+  // JSON Stuff
+  //
+
+  updateBoardFromObject(jsonBoard: JsonBoard) {
+    this.sTier = jsonBoard.sTier;
+    this.aTier = jsonBoard.aTier;
+    this.bTier = jsonBoard.bTier;
+    this.cTier = jsonBoard.cTier;
+    this.dTier = jsonBoard.dTier;
+    this.eTier = jsonBoard.eTier;
+    this.fTier = jsonBoard.fTier;
+    this.noTier = jsonBoard.noTier;
   }
 
   exportToJson(): string {
@@ -111,6 +122,7 @@ export class BoardComponent implements OnInit {
       eTier: this.eTier,
       fTier: this.fTier,
       noTier: this.noTier,
+      name: this.boardSettingsSvc.name,
     };
   }
 
@@ -138,12 +150,12 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  openInfoDialog() : void  {
+  openInfoDialog(): void {
     this.dialog.open(InfoDialogComponent,
       {
         width: '400px'
       }
-      );
+    );
   }
 
   public addTierItem(tierItem: TierListItem) {

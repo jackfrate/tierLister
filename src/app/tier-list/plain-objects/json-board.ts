@@ -3,6 +3,7 @@ import { TierListItem } from './tier-list-item';
 
 export interface JsonBoard {
   id?: string;
+  name?: string;
   sTier: TierListItem[];
   aTier: TierListItem[];
   bTier: TierListItem[];
