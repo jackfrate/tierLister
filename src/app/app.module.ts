@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MatCardModule } from '@angular/material/card';
     UploadDialogComponent,
     FileUploadDirective,
     InfoDialogComponent,
+    DbDialogComponent,
   ],
   imports: [
     // default angualr

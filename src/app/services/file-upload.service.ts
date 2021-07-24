@@ -15,7 +15,7 @@ export class FileUploadService {
   async setBoardFromChosenFile(chosenFile) {
     const self = this;
     const reader = new FileReader();
-    reader.onload = function (event) {
+    reader.onload =  (event) => {
       self.boardSettingsSvc.importFromJsonString(event.target.result.toString());
     }
     reader.readAsText(chosenFile);
