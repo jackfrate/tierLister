@@ -68,14 +68,14 @@
       display: flex;
       flex-flow: row;
       justify-content: space-between;
-
+      
       font-size: 110%;
       color: whitesmoke;
       font-family: "Shadows Into Light", cursive;
-
+      
       margin-top: 5px;
       margin-bottom: 5px;
-
+      
       h3 {
         margin-top: 0px;
         margin-bottom: 0px;
@@ -83,14 +83,15 @@
         margin-left: 10px;
       }
     }
-
+    
     .button-box {
+      flex-wrap: wrap;
       margin-right: 10px;
       button {
         margin: 5px;
       }
-
-      // button themes and stuff
+      display: flex;
+      flex-direction: row;
       justify-content: space-evenly;
     }
 
