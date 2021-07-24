@@ -1,6 +1,6 @@
 
 export interface TierListItem {
-    name?: string;
+    itemName?: string;
     url?: string;
 }
 

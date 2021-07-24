@@ -19,7 +19,7 @@ export class NewItemDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<NewItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TierListItem[]
   ) {
-    this.tierItem = { url: '', name: '' };
+    this.tierItem = { url: '', itemName: '' };
   }
 
   ngOnInit(): void {
@@ -27,20 +27,20 @@ export class NewItemDialogComponent implements OnInit {
 
   makeTierItem() {
     let cachedItem: TierListItem;
-    if (this.tierItem.url === '' && this.tierItem.name === '') {
+    if (this.tierItem.url === '' && this.tierItem.itemName === '') {
       return;
     }
     else {
       // need to cache for it to work, otherwise we get an empty item
       cachedItem = {
         url: this.tierItem.url,
-        name: this.tierItem.name
+        itemName: this.tierItem.itemName
       }
       this.data.push(cachedItem);
     }
     // clear it for cleanliness
     this.tierItem.url = '';
-    this.tierItem.name = '';
+    this.tierItem.itemName = '';
     // incase we want to wrap this function
     return cachedItem;
   }
@@ -52,7 +52,7 @@ export class NewItemDialogComponent implements OnInit {
     if (cachedItem.url !== '') {
       this.urlForm.focus();
     }
-    if (cachedItem.name !== '') {
+    if (cachedItem.itemName !== '') {
       this.nameForm.focus();
     }
   }

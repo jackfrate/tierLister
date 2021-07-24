@@ -13,7 +13,7 @@
             <p>Enter an item name</p>
             <mat-form-field (keyup.enter)="makeTierItem()">
                 <mat-label>Item Name</mat-label>
-                <input #nameForm="matInput" matInput [(ngModel)]="tierItem.name">
+                <input #nameForm="matInput" matInput [(ngModel)]="tierItem.itemName">
             </mat-form-field>
         </div>
         <div mat-dialog-actions>
