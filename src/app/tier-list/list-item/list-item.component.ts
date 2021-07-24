@@ -43,8 +43,8 @@ export class ListItemComponent implements OnInit {
     if (this.listItem.url) {
       this.url = this.listItem.url;
     }
-    else if (this.listItem.itemName) {
-      this.name = this.listItem.itemName;
+    else if (this.listItem.name) {
+      this.name = this.listItem.name;
     }
   }
 

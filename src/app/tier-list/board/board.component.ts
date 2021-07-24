@@ -148,7 +148,7 @@ export class BoardComponent implements OnInit {
 
   public addTierItem(tierItem: TierListItem) {
     // do nothing if we have nothing
-    if (!tierItem.itemName && !tierItem.url) {
+    if (!tierItem.name && !tierItem.url) {
       return;
     }
     else {
