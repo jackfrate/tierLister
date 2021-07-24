@@ -9,6 +9,7 @@ import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
 import { BoardSettingsService } from '../services/board-settings.service';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 
 
 @Component({
@@ -69,8 +70,8 @@ export class BoardComponent implements OnInit {
       );
       // gotta empty the trash
       this.trash = [];
-
     }
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -134,6 +135,14 @@ export class BoardComponent implements OnInit {
       width: '400px',
       // height: '600px'
     });
+  }
+
+  openInfoDialog() : void  {
+    this.dialog.open(InfoDialogComponent,
+      {
+        width: '400px'
+      }
+      );
   }
 
   public addTierItem(tierItem: TierListItem) {

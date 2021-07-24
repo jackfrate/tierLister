@@ -17,6 +17,7 @@ import { FileUploadDirective } from './tier-list/directives/file-upload.directiv
 // my dialogs
 import { NewItemDialogComponent } from './tier-list/new-item-dialog/new-item-dialog.component';
 import { UploadDialogComponent } from './tier-list/upload-dialog/upload-dialog.component';
+import { InfoDialogComponent } from './tier-list/info-dialog/info-dialog.component';
 import { BoardSettingsDialogComponent } from './tier-list/board-settings-dialog/board-settings-dialog.component';
 
 // material
@@ -38,6 +39,7 @@ import { MatCardModule } from '@angular/material/card';
     BoardSettingsDialogComponent,
     UploadDialogComponent,
     FileUploadDirective,
+    InfoDialogComponent,
   ],
   imports: [
     // default angualr
@@ -60,6 +62,7 @@ import { MatCardModule } from '@angular/material/card';
     NewItemDialogComponent,
     BoardSettingsDialogComponent,
     UploadDialogComponent,
+    InfoDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
