@@ -10,7 +10,7 @@ import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-set
 import { BoardSettingsService } from '../services/board-settings.service';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
-import { JsonBoard } from './JsonBoard';
+import { JsonBoard } from '../plain-objects/JsonBoard';
 
 
 @Component({
@@ -111,7 +111,7 @@ export class BoardComponent implements OnInit {
       eTier: this.eTier,
       fTier: this.fTier,
       noTier: this.noTier,
-    }
+    };
   }
 
   //

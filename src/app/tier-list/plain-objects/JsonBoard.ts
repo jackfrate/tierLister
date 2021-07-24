@@ -1,4 +1,4 @@
-import { TierListItem } from '../plain-objects/tier-list-item';
+import { TierListItem } from './tier-list-item';
 
 
 export interface JsonBoard {
