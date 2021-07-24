@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BoardSettingsService } from '../services/board-settings.service';
+import { BoardSettingsService } from '../../services/board-settings.service';
 
 @Component({
   selector: 'app-board-settings-dialog',

@@ -7,7 +7,7 @@ import { NewItemDialogComponent } from '../new-item-dialog/new-item-dialog.compo
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatInput } from '@angular/material/input';
 import { BoardSettingsDialogComponent } from '../board-settings-dialog/board-settings-dialog.component';
-import { BoardSettingsService } from '../services/board-settings.service';
+import { BoardSettingsService } from '../../services/board-settings.service';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { JsonBoard } from '../plain-objects/json-board';
