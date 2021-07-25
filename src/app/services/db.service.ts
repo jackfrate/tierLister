@@ -10,11 +10,16 @@ import { JsonBoardIdentifier } from '../tier-list/plain-objects/json-board-ident
 })
 export class DbService {
 
-  constructor(private http: HttpClient) { }
+  boardList$: Observable<JsonBoardIdentifier[]>;
+
+  constructor(private http: HttpClient) { 
+    this.boardList$ = this.getBoardList();
+  }
 
   getBoardList(): Observable<JsonBoardIdentifier[]> {
     const url = `${environment.apiUrl}/tier-list-list`;
-    return this.http.get<JsonBoardIdentifier[]>(url);
+    const res = this.http.get<JsonBoardIdentifier[]>(url);
+    return res;
   }
 
   getBoard(id: number): Observable<JsonBoard> {

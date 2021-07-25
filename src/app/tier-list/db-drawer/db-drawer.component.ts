@@ -33,7 +33,7 @@ export class DbDrawerComponent {
   }
 
   getList() {
-    this.boardList$ = this.dbSvc.getBoardList();
+    this.boardList$ = this.dbSvc.boardList$;
   }
 
   setBoard(boardId: number) {
