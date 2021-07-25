@@ -1,5 +1,5 @@
 <div class="root">
-    <div class="main" *ngIf="keepTierListOpen()">
+    <div class="main" [hidden]="!keepTierListOpen()">
         <app-board></app-board>
     </div>
     <div class="sidebar" *ngIf="isOpen$ | async">

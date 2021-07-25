@@ -8,17 +8,18 @@
             </mat-card-header>
             <mat-card-content class="content">
                 <div class="board-list">
-                    <mat-radio-group [(ngModel)]="selectedBoard" class="file-radio-group">
-                        <mat-radio-button *ngFor="let item of boardList$ | async" [value]="item.name" class="file-radio-button">
+                    <mat-selection-list class="file-radio-group" [multiple]="false">
+                        <mat-list-option color="primary" *ngFor="let item of boardList$ | async" [value]="item.name"
+                            class="file-radio-button" (click)="setBoard(item.id)">
                             {{item.name}}
-                        </mat-radio-button>
-                    </mat-radio-group>
+                        </mat-list-option>
+                    </mat-selection-list>
                 </div>
             </mat-card-content>
         </div>
         <mat-card-actions>
             <!-- close -->
-            <button mat-raised-button color="primary">Close</button>
+            <button mat-raised-button color="primary" (click)="collapseTierList()">Close</button>
         </mat-card-actions>
     </mat-card>
 </div>

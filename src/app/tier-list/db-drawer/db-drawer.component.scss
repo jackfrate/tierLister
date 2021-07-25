@@ -1,24 +1,27 @@
-.main{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-    height: 100%;
-    background-color: black;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  height: 100%;
+  background-color: black;
 }
 
 .main-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-    align-items: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+  .content {
+    width: 95%;
     .board-list {
-        margin-top: 3%;
+      margin-top: 3%;
+      width: 100%;
     }
+  }
 }
 
 .content {
-
-  }
+}
