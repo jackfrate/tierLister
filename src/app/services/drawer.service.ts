@@ -6,15 +6,16 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   providedIn: 'root'
 })
 export class DrawerService {
-  isOpen: boolean;
+  isOpen: boolean = false;
   isOpen$: Subject<boolean>;
 
   constructor(private deviceService: DeviceDetectorService) {
-    this.isOpen = true;
     this.isOpen$ = new Subject();
     this.isOpen$.subscribe(value => {
       this.isOpen = value;
     });
+    // need this for it to work on first press
+    this.isOpen$.next(false);
   }
 
   toggleIsOpen() {

@@ -1,7 +1,11 @@
-.main {
+.root {
     display: flex;
     flex-direction: row;
-    flex-grow: 2;
-    min-width: 100vw;
-    min-height: 100vw;
+    // flex-grow: 2;
+    min-width: 100%;
+    min-height: 100%;
+    .main {
+        min-height: 100%;
+        width: 100%;
+    }
 }

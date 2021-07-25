@@ -11,7 +11,6 @@ export class DbDrawerComponent {
 
   isOpen$: Observable<boolean>;
 
-
   constructor(private drawerSvc: DrawerService) {
     this.isOpen$ = this.drawerSvc.isOpen$;
   }

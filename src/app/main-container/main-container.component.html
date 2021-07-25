@@ -1,8 +1,8 @@
-<div class="main">
-    <div class="sidebar" *ngIf="isOpen$ | async">
-        <app-db-drawer></app-db-drawer>
-    </div>
+<div class="root">
     <div class="main" *ngIf="keepTierListOpen()">
         <app-board></app-board>
+    </div>
+    <div class="sidebar" *ngIf="isOpen$ | async">
+        <app-db-drawer></app-db-drawer>
     </div>
 </div>
