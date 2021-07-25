@@ -27,6 +27,7 @@ export class BoardSettingsService {
     this.uploadedBoardChange = new Subject();
     this.uploadedBoardChange.subscribe((value) => {
       this.uploadedBoard = value;
+      this.name = value.name;
     });
   }
 
