@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DrawerService } from '../services/drawer.service';
 
 @Component({
   selector: 'app-main-container',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-container.component.scss']
 })
 export class MainContainerComponent implements OnInit {
+  isOpen$: Observable<boolean>;
 
-  constructor() { }
+  constructor(private drawerSvc: DrawerService) {
+    this.isOpen$ = this.drawerSvc.isOpen$;
+  }
 
   ngOnInit(): void {
+  }
+
+  keepTierListOpen(): boolean {
+    return this.drawerSvc.keepTierListOpen();
   }
 
 }

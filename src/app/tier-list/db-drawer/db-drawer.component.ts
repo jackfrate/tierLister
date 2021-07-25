@@ -17,6 +17,6 @@ export class DbDrawerComponent {
   }
 
   collapseTierList() {
-    if 
+    return this.drawerSvc.keepTierListOpen();
   }
 }

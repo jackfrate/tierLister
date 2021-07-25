@@ -20,4 +20,10 @@ export class DrawerService {
   toggleIsOpen() {
     this.isOpen$.next(!this.isOpen);
   }
+
+  keepTierListOpen(): boolean {
+    return (this.isOpen && this.deviceService.isMobile())
+      ? false
+      : true;
+  }
 }
