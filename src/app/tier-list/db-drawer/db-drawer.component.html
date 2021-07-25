@@ -1,20 +1,21 @@
 <div class="main">
     <mat-card class="main-card">
-        <mat-card-header>
-            <mat-card-title>
-                Select A Board
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="content">
-            <mat-label>Select A Board</mat-label>
-            <div>
-                <mat-radio-group [(ngModel)]="selectedBoard" class="file-radio-group">
-                    <mat-radio-button *ngFor="let item of boardList$ | async" [value]="item.name" class="file-radio-button">
-                        {{item.name}}
-                    </mat-radio-button>
-                </mat-radio-group>
-            </div>
-        </mat-card-content>
+        <div class="at-top">
+            <mat-card-header>
+                <mat-card-title>
+                    Select A Board
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div class="board-list">
+                    <mat-radio-group [(ngModel)]="selectedBoard" class="file-radio-group">
+                        <mat-radio-button *ngFor="let item of boardList$ | async" [value]="item.name" class="file-radio-button">
+                            {{item.name}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </mat-card-content>
+        </div>
         <mat-card-actions>
             <!-- close -->
             <button mat-raised-button color="primary">Close</button>
