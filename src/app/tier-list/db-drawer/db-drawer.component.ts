@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BoardSettingsService } from 'src/app/services/board-settings.service';
+import { DbService } from 'src/app/services/db.service';
 import { DrawerService } from 'src/app/services/drawer.service';
+import { JsonBoard } from '../plain-objects/json-board';
+import { JsonBoardIdentifier } from '../plain-objects/json-board-identifier';
 
 @Component({
   selector: 'app-db-drawer',
@@ -9,13 +13,39 @@ import { DrawerService } from 'src/app/services/drawer.service';
 })
 export class DbDrawerComponent {
 
-  isOpen$: Observable<boolean>;
+  boardList$: Observable<JsonBoardIdentifier[]>;
 
-  constructor(private drawerSvc: DrawerService) {
-    this.isOpen$ = this.drawerSvc.isOpen$;
+  selectedBoard: JsonBoard;
+  cachedBoard: JsonBoard;
+
+  selectionMade: boolean = false;
+
+  constructor(
+    private dbSvc: DbService,
+    private boardSvc: BoardSettingsService,
+    private drawerSvc: DrawerService,
+  ) { }
+
+  ngOnInit(): void {
+    // link to the service
+    this.getList();
+    this.cachedBoard = this.boardSvc.uploadedBoard;
+  }
+
+  getList() {
+    this.boardList$ = this.dbSvc.getBoardList();
+  }
+
+  setBoard(boardId: number) {
+    this.dbSvc.getBoard(boardId).subscribe(
+      value => {
+        this.selectedBoard = value;
+        this.boardSvc.importFromTierList(value);
+      });
+
   }
 
   collapseTierList() {
-    return this.drawerSvc.keepTierListOpen();
+    return this.drawerSvc.toggleIsOpen();
   }
 }
