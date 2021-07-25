@@ -145,16 +145,16 @@
                 </button>
             </div>
             <div class="button-spacing">
-                <button mat-raised-button color="accent" (click)="openUploadDialog()">
-                    <mat-icon>publish</mat-icon>
-                </button>
-            </div>
-            <div class="button-spacing">
                 <a [href]="getJsonDownloadLink()" download={{getDownloadName()}}>
                     <button mat-raised-button color="accent">
                         <mat-icon>get_app</mat-icon>
                     </button>
                 </a>
+            </div>
+            <div class="button-spacing">
+                <button mat-raised-button color="accent" (click)="openUploadDialog()">
+                    <mat-icon>publish</mat-icon>
+                </button>
             </div>
             <div class="button-spacing">
                 <button id="info-button" mat-raised-button color="secondary" (click)="openDbDrawer()">
