@@ -10,7 +10,6 @@ import { JsonBoardIdentifier } from '../tier-list/plain-objects/json-board-ident
 })
 export class DbService {
 
-
   constructor(private http: HttpClient) { }
 
   getBoardList(): Observable<JsonBoardIdentifier[]> {

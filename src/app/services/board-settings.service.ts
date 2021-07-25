@@ -23,7 +23,7 @@ export class BoardSettingsService {
   name: string = 'yeet';
   author: string = 'jack';
 
-  constructor() { 
+  constructor() {
     this.uploadedBoardChange = new Subject();
     this.uploadedBoardChange.subscribe((value) => {
       this.uploadedBoard = value;

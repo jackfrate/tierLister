@@ -162,7 +162,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   openDbDialog(): void {
     this.dialog.open(DbDialogComponent,
       {
-        width: '400px'
+        width: '400px',
+        height: '75vh'
       });
   }
 
