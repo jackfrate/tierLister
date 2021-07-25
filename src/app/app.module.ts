@@ -32,6 +32,8 @@ import { DbDialogComponent } from './tier-list/db-dialog/db-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { WithLoadingPipe } from './with-loading.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { MainContainerComponent } from './main-container/main-container.component';
+import { DbDrawerComponent } from './tier-list/db-drawer/db-drawer.component';
 
 
 
@@ -47,6 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     InfoDialogComponent,
     DbDialogComponent,
     WithLoadingPipe,
+    MainContainerComponent,
+    DbDrawerComponent,
   ],
   imports: [
     // default angualr
