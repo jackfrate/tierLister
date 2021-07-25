@@ -12,6 +12,7 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { JsonBoard } from '../plain-objects/json-board';
 import { DbDialogComponent } from '../db-dialog/db-dialog.component';
+import { DrawerService } from 'src/app/services/drawer.service';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private boardSettingsSvc: BoardSettingsService,
-    private sanitizer: DomSanitizer
+    private drawerSvc: DrawerService,
+    private sanitizer: DomSanitizer,
   ) {
     this.setupColorMap();
   }
@@ -165,6 +167,10 @@ export class BoardComponent implements OnInit, OnDestroy {
         width: '400px',
         height: '75vh'
       });
+  }
+
+  openDbDrawer(): void {
+    this.drawerSvc.toggleIsOpen();
   }
 
   public addTierItem(tierItem: TierListItem) {
