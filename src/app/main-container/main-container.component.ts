@@ -20,5 +20,12 @@ export class MainContainerComponent implements OnInit {
   keepTierListOpen(): boolean {
     return this.drawerSvc.keepTierListOpen();
   }
-
+  getDrawerStyle() {
+    if (this.drawerSvc.keepTierListOpen()) {
+      return '25%';
+    }
+    else {
+      return '100%';
+    }
+  }
 }

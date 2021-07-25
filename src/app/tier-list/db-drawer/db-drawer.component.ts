@@ -45,6 +45,8 @@ export class DbDrawerComponent {
 
   }
 
+ 
+
   collapseTierList() {
     return this.drawerSvc.toggleIsOpen();
   }

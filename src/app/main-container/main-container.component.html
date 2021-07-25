@@ -2,7 +2,7 @@
     <div class="main" [hidden]="!keepTierListOpen()">
         <app-board></app-board>
     </div>
-    <div class="sidebar" *ngIf="isOpen$ | async">
+    <div class="sidebar" *ngIf="isOpen$ | async" [style.min-width]="getDrawerStyle()">
         <app-db-drawer></app-db-drawer>
     </div>
 </div>
