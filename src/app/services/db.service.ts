@@ -12,7 +12,7 @@ export class DbService {
 
   boardList$: Observable<JsonBoardIdentifier[]>;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.boardList$ = this.getBoardList();
   }
 
