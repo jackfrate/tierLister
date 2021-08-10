@@ -129,11 +129,16 @@
     </div>
     <div class="bottom-bar">
         <!-- the 'logo' -->
-        <div class="title-box">
+        <!-- <div class="title-box">
             <h3>TIER LISTER</h3>
-        </div>
+        </div> -->
         <!-- the buttons -->
         <div class="button-box">
+            <div class="button-spacing">
+                <button id="info-button" mat-raised-button color="secondary" (click)="openDbDrawer()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
             <div class="button-spacing">
                 <button id="settings-button" mat-raised-button color="primary" (click)="openBoardSettingsDialog()">
                     <mat-icon>edit</mat-icon>
@@ -154,11 +159,6 @@
             <div class="button-spacing">
                 <button mat-raised-button color="accent" (click)="openUploadDialog()">
                     <mat-icon>publish</mat-icon>
-                </button>
-            </div>
-            <div class="button-spacing">
-                <button id="info-button" mat-raised-button color="secondary" (click)="openDbDrawer()">
-                    <mat-icon>cloud_download</mat-icon>
                 </button>
             </div>
             <div class="button-spacing">
